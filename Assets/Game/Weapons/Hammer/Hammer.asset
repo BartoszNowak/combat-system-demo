@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24a376824cd5939458385eddd7398c72, type: 3}
+  m_Name: Hammer
+  m_EditorClassIdentifier: 
+  range: 3
+  damage: 10
+  timeBetweenAttacks: 3
+  weaponPrefab: {fileID: 2759256407701818647, guid: 551638366bcc9c54fb35e55272188f63, type: 3}
+  weaponOverride: {fileID: 22100000, guid: 38fcd41d7118b8a46998ffc771545e23, type: 2}
+  isRightHanded: 1
+  canCancelAnimation: 0
+  projectilePrefab: {fileID: 0}
