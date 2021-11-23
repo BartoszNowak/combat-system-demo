@@ -19,4 +19,5 @@ MonoBehaviour:
   weaponOverride: {fileID: 22100000, guid: 38fcd41d7118b8a46998ffc771545e23, type: 2}
   isRightHanded: 1
   canCancelAnimation: 0
+  hasHyperArmor: 1
   projectilePrefab: {fileID: 0}

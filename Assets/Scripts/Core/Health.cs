@@ -30,7 +30,6 @@ namespace RPG.Core
 		public void DealDamage(int damage, GameObject attacker)
         {
             currentHealth = Mathf.Max(currentHealth - damage, 0);
-            Debug.Log(currentHealth);
             OnTakeDamage?.Invoke(damage);
             if (currentHealth == 0)
             {

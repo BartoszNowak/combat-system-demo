@@ -23,6 +23,8 @@ namespace RPG.Combat
         [SerializeField]
         private bool canCancelAnimation = true;
         [SerializeField]
+        private bool hasHyperArmor = false;
+        [SerializeField]
         private GameObject projectilePrefab = null;
 
         public float GetRange()
@@ -42,6 +44,11 @@ namespace RPG.Combat
 		{
             return canCancelAnimation;
 		}
+
+        public bool HasHyperArmor()
+        {
+            return hasHyperArmor;
+        }
 
         const string weaponName = "Weapon";
 

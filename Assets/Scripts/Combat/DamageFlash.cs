@@ -6,9 +6,16 @@ using UnityEngine;
 public class DamageFlash : MonoBehaviour
 {
     [SerializeField]
-    private Health health = null;
+    private SkinnedMeshRenderer modelRenderer = null;
     [SerializeField]
     private Material damageFlashMaterial = null;
+
+    private Health health;
+
+    private void Awake()
+	{
+        health = GetComponent<Health>();
+    }
 
 	private void OnEnable()
 	{
@@ -27,17 +34,15 @@ public class DamageFlash : MonoBehaviour
 
     private IEnumerator ShowDamageFlash()
 	{
-        var renderer = GetComponent<SkinnedMeshRenderer>();
-        var materialsOriginal = new Material[renderer.materials.Length];
-        renderer.materials.CopyTo(materialsOriginal, 0);
+        var materialsOriginal = new Material[modelRenderer.materials.Length];
+        modelRenderer.materials.CopyTo(materialsOriginal, 0);
 
-        var materialsReplace = new Material[renderer.materials.Length + 1];
-        renderer.materials.CopyTo(materialsReplace, 0);
-        Debug.Log($"Original = {materialsOriginal.Length}, replacement = {materialsReplace.Length}");
+        var materialsReplace = new Material[modelRenderer.materials.Length + 1];
+        modelRenderer.materials.CopyTo(materialsReplace, 0);
 
-        materialsReplace[renderer.materials.Length - 1] = damageFlashMaterial;
-        renderer.materials = materialsReplace;
+        materialsReplace[modelRenderer.materials.Length - 1] = damageFlashMaterial;
+        modelRenderer.materials = materialsReplace;
         yield return new WaitForSeconds(0.1f);
-        renderer.materials = materialsOriginal;
+        modelRenderer.materials = materialsOriginal;
     }
 }

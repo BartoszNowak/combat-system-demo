@@ -8,7 +8,9 @@ namespace RPG.Combat
 {
     public class Attacker : MonoBehaviour
     {
-        [SerializeField]
+		private const float InteractionAngle = 70f;
+
+		[SerializeField]
         private Transform rightHand = null;
         [SerializeField]
         private Transform leftHand = null;
@@ -87,11 +89,11 @@ namespace RPG.Combat
         void Hit()
         {
 			if (target == null) return;
+            if (!CanAttack(target)) return;
 
 			var health = target.GetComponent<Health>();            
 			if (health != null)
 			{
-                Debug.Log($"health component = {health.name}, damage = {currentWeapon.GetDamage()}, attacker = {gameObject.name}");
                 health.DealDamage(currentWeapon.GetDamage(), gameObject);
 			}
             if(currentWeapon.CanCancelAnimation())
@@ -119,27 +121,24 @@ namespace RPG.Combat
         {
             var hits = Physics.OverlapSphere(transform.position, currentWeapon.GetRange());
 
-            var shortestRange = Mathf.Infinity;
             var smallestAngle = Mathf.Infinity;
             Transform targetEnemy = null;
 
             foreach (var hit in hits)
-            {
-                if (hit.transform.tag != "Enemy") continue;
-                
+			{
+				if (hit.transform.tag != "Enemy") continue;
 
-                var directionVector = hit.transform.position - transform.position;
-                var distance = directionVector.magnitude;
-                var angle = Vector3.Angle(directionVector, transform.forward);
+				var directionVector = hit.transform.position - transform.position;
+				var distance = directionVector.magnitude;
+				var angle = Vector3.Angle(directionVector, transform.forward);
 
-                //if (distance < shortestRange && angle <= 80f)
-                if (angle <= 70f && distance < currentWeapon.GetRange() && angle < smallestAngle)
-                {
-                    shortestRange = distance;
-                    targetEnemy = hit.transform;
-                }
-            }
-            if (target != null && target != targetEnemy)
+				if (CanAttack(angle, distance) && angle < smallestAngle)
+				{
+                    smallestAngle = angle;
+					targetEnemy = hit.transform;
+				}
+			}
+			if (target != null && target != targetEnemy)
             {
                 target.GetComponent<Target>().RemoveTarget();
                 target = null;
@@ -149,6 +148,19 @@ namespace RPG.Combat
                 target = targetEnemy;
                 target.GetComponent<Target>().SetAsTarget();
             }
+        }
+
+		private bool CanAttack(float angle, float distance)
+		{
+			return angle <= InteractionAngle && distance < currentWeapon.GetRange();
+		}
+
+		private bool CanAttack(Transform targetEnemy)
+        {
+            var directionVector = targetEnemy.position - transform.position;
+            var distance = directionVector.magnitude;
+            var angle = Vector3.Angle(directionVector, transform.forward);
+            return angle <= InteractionAngle && distance < currentWeapon.GetRange();
         }
     }
 }

@@ -1062,7 +1062,6 @@ GameObject:
   m_Component:
   - component: {fileID: 584984241747048156}
   - component: {fileID: 719430747484378122}
-  - component: {fileID: 8470655476355551918}
   m_Layer: 0
   m_Name: SM_Chr_Soldier_Male_01
   m_TagString: Untagged
@@ -1186,20 +1185,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000000059604645, y: 0.8429994, z: -0.0064426064}
     m_Extent: {x: 1.0245616, y: 0.9466528, z: 0.27056026}
   m_DirtyAABB: 0
---- !u!114 &8470655476355551918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 582584202985117142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65d379ef23ef46f459503eca03c97595, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: {fileID: 5568494807761769297}
-  damageFlashMaterial: {fileID: 2100000, guid: f3049291e1f1d514eb851c787328b6e0, type: 2}
 --- !u!1 &582598124958081204
 GameObject:
   m_ObjectHideFlags: 0
@@ -1818,9 +1803,53 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8277809600494318351, guid: 49d768598d6bc0d488383c8bcc9d2f31, type: 3}
+      propertyPath: leftHand
+      value: 
+      objectReference: {fileID: 585039284526609598}
+    - target: {fileID: -8277809600494318351, guid: 49d768598d6bc0d488383c8bcc9d2f31, type: 3}
+      propertyPath: rightHand
+      value: 
+      objectReference: {fileID: 576937771857234778}
+    - target: {fileID: -8277809600494318351, guid: 49d768598d6bc0d488383c8bcc9d2f31, type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 6f85b2d54c2331b4697c4d62070fb045, type: 2}
+    - target: {fileID: 378259632172425251, guid: 49d768598d6bc0d488383c8bcc9d2f31, type: 3}
+      propertyPath: modelRenderer
+      value: 
+      objectReference: {fileID: 719430747484378122}
     - target: {fileID: 3596087842940095948, guid: 49d768598d6bc0d488383c8bcc9d2f31, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596087842940095949, guid: 49d768598d6bc0d488383c8bcc9d2f31, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596087843446932040, guid: 49d768598d6bc0d488383c8bcc9d2f31, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596087843446932043, guid: 49d768598d6bc0d488383c8bcc9d2f31, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596087843446932044, guid: 49d768598d6bc0d488383c8bcc9d2f31, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596087844171672200, guid: 49d768598d6bc0d488383c8bcc9d2f31, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596087844171672201, guid: 49d768598d6bc0d488383c8bcc9d2f31, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596087844171672309, guid: 49d768598d6bc0d488383c8bcc9d2f31, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4883810909985390887, guid: 49d768598d6bc0d488383c8bcc9d2f31, type: 3}
       propertyPath: m_Name
@@ -1877,14 +1906,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4883810909985390888, guid: 49d768598d6bc0d488383c8bcc9d2f31, type: 3}
   m_PrefabInstance: {fileID: 9027396911871515620}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5568494807761769297 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3458910954030368949, guid: 49d768598d6bc0d488383c8bcc9d2f31, type: 3}
-  m_PrefabInstance: {fileID: 9027396911871515620}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7931c72716457e41914caa93c1731f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
