@@ -378,10 +378,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8475793825318496434, guid: 3a8fc2b6a42076544ad1d8fadbfaf09f, type: 3}
+    - target: {fileID: 4347820000589569032, guid: 3a8fc2b6a42076544ad1d8fadbfaf09f, type: 3}
       propertyPath: defaultWeapon
       value: 
       objectReference: {fileID: 11400000, guid: d9fc8442876d19149ae2b15d81b1fe28, type: 2}
+    - target: {fileID: 8475793825318496434, guid: 3a8fc2b6a42076544ad1d8fadbfaf09f, type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 62c6fdcf8fede6b45b47fc2141de32b1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a8fc2b6a42076544ad1d8fadbfaf09f, type: 3}
 --- !u!43 &1082701968
@@ -631,6 +635,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 630275665}
+    - target: {fileID: 8095380511787620117, guid: c8a83bcc1f8074346856b5f5dca7df38, type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: d9fc8442876d19149ae2b15d81b1fe28, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8a83bcc1f8074346856b5f5dca7df38, type: 3}
 --- !u!4 &1801169794 stripped
@@ -692,7 +700,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh59746
+  m_Name: pb_Mesh-1754
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

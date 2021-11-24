@@ -15,33 +15,24 @@ namespace RPG.Combat
         [SerializeField]
         private Transform leftHand = null;
         [SerializeField]
-        private Weapon defaultWeapon = null;
+        internal Weapon defaultWeapon = null;
 
-        private Animator animator;
-        private Mover movement;
-        private ActionManager actionManager;
-		private Health health;
+        internal Animator animator;
+        internal ActionManager actionManager;
+		internal Health health;
+        internal Mover mover;
 
-        private Transform target;
-        private float timeSinceLastAttack = Mathf.Infinity;
-        private Weapon currentWeapon = null;
+        internal Transform target;
+        internal float timeSinceLastAttack = Mathf.Infinity;
+        internal Weapon currentWeapon = null;
 
         private void Start()
         {
+            mover = GetComponent<Mover>();
             animator = GetComponent<Animator>();
             actionManager = GetComponent<ActionManager>();
-            movement = GetComponent<Mover>();
             health = GetComponent<Health>();
             EquipWeapon(defaultWeapon);
-        }
-
-        private void Update()
-        {
-            if (health.IsDead()) return;
-
-            timeSinceLastAttack += Time.deltaTime;
-
-            TargetEnemy();
         }
 
         public void Attack()
@@ -71,7 +62,7 @@ namespace RPG.Combat
             timeSinceLastAttack = Mathf.Infinity;
         }
 
-        private void TriggerAttack()
+        internal void TriggerAttack()
         {
             //Triggers Hit and Shoot methods
             animator.SetTrigger("attack");
@@ -94,6 +85,7 @@ namespace RPG.Combat
 			var health = target.GetComponent<Health>();            
 			if (health != null)
 			{
+                target.GetComponent<Mover>().Knockback(transform.forward, currentWeapon.GetKnockback());
                 health.DealDamage(currentWeapon.GetDamage(), gameObject);
 			}
             if(currentWeapon.CanCancelAnimation())
@@ -117,45 +109,12 @@ namespace RPG.Combat
             //}
         }
 
-        private void TargetEnemy()
-        {
-            var hits = Physics.OverlapSphere(transform.position, currentWeapon.GetRange());
-
-            var smallestAngle = Mathf.Infinity;
-            Transform targetEnemy = null;
-
-            foreach (var hit in hits)
-			{
-				if (hit.transform.tag != "Enemy") continue;
-
-				var directionVector = hit.transform.position - transform.position;
-				var distance = directionVector.magnitude;
-				var angle = Vector3.Angle(directionVector, transform.forward);
-
-				if (CanAttack(angle, distance) && angle < smallestAngle)
-				{
-                    smallestAngle = angle;
-					targetEnemy = hit.transform;
-				}
-			}
-			if (target != null && target != targetEnemy)
-            {
-                target.GetComponent<Target>().RemoveTarget();
-                target = null;
-            }
-            if (targetEnemy != null)
-            {
-                target = targetEnemy;
-                target.GetComponent<Target>().SetAsTarget();
-            }
-        }
-
-		private bool CanAttack(float angle, float distance)
+		internal bool CanAttack(float angle, float distance)
 		{
 			return angle <= InteractionAngle && distance < currentWeapon.GetRange();
 		}
 
-		private bool CanAttack(Transform targetEnemy)
+		internal bool CanAttack(Transform targetEnemy)
         {
             var directionVector = targetEnemy.position - transform.position;
             var distance = directionVector.magnitude;

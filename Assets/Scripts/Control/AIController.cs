@@ -7,11 +7,13 @@ using UnityEngine;
 
 namespace RPG.Control
 {
-    [RequireComponent(typeof(AIMover))]
+    [RequireComponent(typeof(Mover))]
     [RequireComponent(typeof(AIAttacker))]
     [RequireComponent(typeof(Health))]
     public class AIController : MonoBehaviour
     {
+        private const float InteractionAngle = 70f;
+
         [SerializeField]
         private float chaseDistance = 5f;
         [SerializeField]
@@ -29,7 +31,7 @@ namespace RPG.Control
         //[SerializeField]
         //private PatrolPath patrolPath;
 
-        private AIMover movement;
+        private Mover movement;
         private AIAttacker combatAgent;
         private Health health;
 
@@ -54,7 +56,7 @@ namespace RPG.Control
         {
             guardLocation = transform.position;
             player = GameObject.FindGameObjectWithTag("Player");
-            movement = GetComponent<AIMover>();
+            movement = GetComponent<Mover>();
             combatAgent = GetComponent<AIAttacker>();
             health = GetComponent<Health>();
         }
@@ -133,14 +135,16 @@ namespace RPG.Control
             //    }
             //}
 
-            movement.StartMoveAction(nextPosition, patrolSpeedMultiplier);
+            movement.MoveTo(nextPosition, patrolSpeedMultiplier);
         }
 
         private bool IsPlayerInAttackRange()
         {
-            var playerPosition = player.transform.position;
-            var distance = Vector3.Distance(transform.position, playerPosition);
-            return distance <= chaseDistance;
+            var directionVector = player.transform.position - transform.position;
+            var distance = directionVector.magnitude;
+            var angle = Vector3.Angle(directionVector, transform.forward);
+
+            return distance <= chaseDistance;// && angle <= InteractionAngle;
         }
 
         private bool IsPlayerDead()

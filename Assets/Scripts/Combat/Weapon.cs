@@ -25,6 +25,8 @@ namespace RPG.Combat
         [SerializeField]
         private bool hasHyperArmor = false;
         [SerializeField]
+        private float knockback = 0f;
+        [SerializeField]
         private GameObject projectilePrefab = null;
 
         public float GetRange()
@@ -49,6 +51,11 @@ namespace RPG.Combat
         {
             return hasHyperArmor;
         }
+
+        public float GetKnockback()
+		{
+            return knockback;
+		}
 
         const string weaponName = "Weapon";
 

@@ -20,4 +20,5 @@ MonoBehaviour:
   isRightHanded: 1
   canCancelAnimation: 0
   hasHyperArmor: 1
+  knockback: 0.3
   projectilePrefab: {fileID: 0}

@@ -113,7 +113,7 @@ MonoBehaviour:
   patrolSpeedMultiplier: 0.2
   aggroTime: 10
   callNerbyEnemiesDistance: 10
---- !u!114 &-3101851956365156716
+--- !u!114 &-1542103090349748765
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,9 +122,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4883810909985390887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1efe84218b77d924899b75e92b7a0c7e, type: 3}
+  m_Script: {fileID: 11500000, guid: 291eba25c6215d74abb479fc680454f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: 0
 --- !u!114 &2680890778258447292
 MonoBehaviour:
   m_ObjectHideFlags: 0

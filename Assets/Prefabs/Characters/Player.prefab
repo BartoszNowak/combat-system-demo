@@ -1798,21 +1798,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 20
---- !u!114 &8475793825318496434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4169833081632883803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5eaef79e0c2047043acbfd0339f25d81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rightHand: {fileID: 3487728826424051717}
-  leftHand: {fileID: 5286484225027730269}
-  defaultWeapon: {fileID: 11400000, guid: 6f85b2d54c2331b4697c4d62070fb045, type: 2}
 --- !u!114 &8852451728959884786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1825,3 +1810,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5eeb8fd7f26474985afa7eb6378178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4347820000589569032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4169833081632883803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbea812ca1761d428b8a857c799bffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightHand: {fileID: 3487728826424051717}
+  leftHand: {fileID: 5286484225027730269}
+  defaultWeapon: {fileID: 11400000, guid: 62c6fdcf8fede6b45b47fc2141de32b1, type: 2}

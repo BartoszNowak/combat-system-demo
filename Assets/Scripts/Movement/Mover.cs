@@ -13,9 +13,10 @@ namespace RPG.Movement
         [SerializeField]
         private float rotationSpeed;
 
-        private Animator animator = null;
-        private NavMeshAgent navMeshAgent = null;
-        private ActionManager actionManager = null;
+        internal Animator animator = null;
+        internal NavMeshAgent navMeshAgent = null;
+        internal ActionManager actionManager = null;
+        private float maxSpeed;
 
         void Start()
         {
@@ -23,10 +24,15 @@ namespace RPG.Movement
             navMeshAgent = GetComponent<NavMeshAgent>();
             actionManager = GetComponent<ActionManager>();
 
-            navMeshAgent.updateRotation = false;
+            maxSpeed = navMeshAgent.speed;
         }
 
-        public void Move(float horizontal, float vertical)
+		private void Update()
+		{
+			UpdateLocomotionAnimation();
+		}
+
+		public void Move(float horizontal, float vertical)
 		{
             var movement = new Vector3(horizontal, 0, vertical) * -1;
             var destination = transform.position + movement;
@@ -36,8 +42,37 @@ namespace RPG.Movement
                 navMeshAgent.SetDestination(destination);
                 InstantlyTurn(destination);
             }
-            var localVelocity = transform.InverseTransformDirection(navMeshAgent.velocity);
+        }
 
+        public void MoveTo(Vector3 destination, float maxSpeedFraction)
+        {
+            navMeshAgent.SetDestination(destination);
+            navMeshAgent.speed = maxSpeed * maxSpeedFraction;
+            navMeshAgent.isStopped = false;
+            navMeshAgent.updateRotation = true;
+        }
+
+        public void MoveTo(Vector3 destination)
+        {
+            MoveTo(destination, 1f);
+        }
+
+        public void Knockback(Vector3 direction, float strength)
+		{
+            var knockbackOffset = direction * strength;
+            navMeshAgent.SetDestination(transform.position + knockbackOffset);
+            navMeshAgent.Move(knockbackOffset);
+        }
+
+        public void Stop()
+        {
+            navMeshAgent.isStopped = true;
+            navMeshAgent.updateRotation = false;
+        }
+
+        private void UpdateLocomotionAnimation()
+        {
+            var localVelocity = transform.InverseTransformDirection(navMeshAgent.velocity);
             animator.SetFloat("forwardSpeed", localVelocity.z);
         }
 
