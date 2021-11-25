@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a376824cd5939458385eddd7398c72, type: 3}
   m_Name: Hammer
   m_EditorClassIdentifier: 
-  range: 3
+  range: 2
   damage: 10
   timeBetweenAttacks: 3
   weaponPrefab: {fileID: 2759256407701818647, guid: 551638366bcc9c54fb35e55272188f63, type: 3}
@@ -20,5 +20,6 @@ MonoBehaviour:
   isRightHanded: 1
   canCancelAnimation: 0
   hasHyperArmor: 1
-  knockback: 0.3
+  knockback: 0.2
+  feedbackShakePower: 1
   projectilePrefab: {fileID: 0}

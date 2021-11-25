@@ -8,27 +8,62 @@ namespace RPG.Combat
 {
     public class AttackBehaviour : StateMachineBehaviour, IAction
     {
-		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        private float animationTime = 0f;
+
+        private float lengthTriggerTime;
+
+        private bool start;
+        private bool end;
+
+        void Enter(Animator animator)
         {
             var attacker = animator.GetComponent<Attacker>();
             var weapon = attacker.GetCurrentWeapon();
             animator.SetBool("hyperArmor", weapon.HasHyperArmor());
-
-            var actionManager = animator.GetComponent<ActionManager>();
-            actionManager.StartAction(this);
         }
 
-        override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        void Exit(Animator animator)
         {
             if(animator.GetBool("hyperArmor"))
 			{
                 animator.ResetTrigger("hit");
             }
             animator.SetBool("hyperArmor", false);
+            animator.ResetTrigger("attack");
 
             var actionManager = animator.GetComponent<ActionManager>();
             actionManager.CancelCurrentAction();
-            animator.ResetTrigger("attack");
         }
-    }
+
+		public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+		{
+            var actionManager = animator.GetComponent<ActionManager>();
+            actionManager.StartAction(this);
+            lengthTriggerTime = stateInfo.length * 0.1f;
+            start = false;
+            end = false;
+		}
+
+		public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+		{
+            
+            animationTime = 0f;
+		}
+
+		public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+		{
+            animationTime += Time.deltaTime;
+
+            if(animationTime >= lengthTriggerTime && !start)
+			{
+                Enter(animator);
+                start = true;
+			}
+            if (animationTime >= stateInfo.length - lengthTriggerTime && !end)
+            {
+                Exit(animator);
+                end = true;
+            }
+        }
+	}
 }

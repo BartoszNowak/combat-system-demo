@@ -27,6 +27,8 @@ namespace RPG.Combat
         [SerializeField]
         private float knockback = 0f;
         [SerializeField]
+        private float feedbackShakePower = 0f;
+        [SerializeField]
         private GameObject projectilePrefab = null;
 
         public float GetRange()
@@ -56,6 +58,11 @@ namespace RPG.Combat
 		{
             return knockback;
 		}
+
+        public float GetFeedbackShakePower()
+        {
+            return feedbackShakePower;
+        }
 
         const string weaponName = "Weapon";
 

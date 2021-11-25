@@ -42,7 +42,7 @@ namespace RPG.Combat
         private void HandleAttack()
         {
             mover.Stop();
-            if (timeSinceLastAttack >= currentWeapon.GetTimeBetweenAttacks())
+            if (timeSinceLastAttack >= currentWeapon.GetTimeBetweenAttacks() && IsInRange())
             {
                 transform.LookAt(target);
                 TriggerAttack();

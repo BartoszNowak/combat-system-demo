@@ -79,12 +79,14 @@ namespace RPG.Combat
         //Animation trigger
         void Hit()
         {
-			if (target == null) return;
+            Camera.main.GetComponent<CameraShake>().TriggerShake(currentWeapon.GetFeedbackShakePower());
+            if (target == null) return;
             if (!CanAttack(target)) return;
 
 			var health = target.GetComponent<Health>();            
 			if (health != null)
 			{
+                target.GetComponent<ActionManager>().CancelCurrentAction();
                 target.GetComponent<Mover>().Knockback(transform.forward, currentWeapon.GetKnockback());
                 health.DealDamage(currentWeapon.GetDamage(), gameObject);
 			}
