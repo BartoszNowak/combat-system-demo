@@ -12,7 +12,6 @@ public class Target : MonoBehaviour
     private void Start()
 	{
         targetIndicator = Instantiate(targetIndicatorPrefab);
-        targetIndicator.SetActive(false);
 
 	}
 
@@ -20,17 +19,22 @@ public class Target : MonoBehaviour
 	{
 		if(targetIndicator != null && targetIndicator.activeSelf)
 		{
-            var collider = GetComponent<CapsuleCollider>();
-            if (collider == null) return;
+			var collider = GetComponent<CapsuleCollider>();
+			if (collider == null) return;
 
-			Vector3 offset = new Vector3(1, 0.5f, 0.6f);
-			var displayPosition = transform.position + offset + (Vector3.up * collider.height / 2f);
-            targetIndicator.transform.position = displayPosition;
-        }
+			MoveToTargetPosition();
+		}
+	}
+
+	private void MoveToTargetPosition()
+	{
+		Vector3 offset = new Vector3(2.1f, 0.015f, 0f);
+		targetIndicator.transform.position = transform.position + offset;
 	}
 
 	public void SetAsTarget()
     {
+		MoveToTargetPosition();
         targetIndicator.SetActive(true);
     }
 

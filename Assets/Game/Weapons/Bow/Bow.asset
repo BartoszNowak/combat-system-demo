@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24a376824cd5939458385eddd7398c72, type: 3}
+  m_Name: Bow
+  m_EditorClassIdentifier: 
+  range: 15
+  damage: 10
+  timeBetweenAttacks: 3
+  weaponPrefab: {fileID: 5047402449556661361, guid: 9baf109065967e04586804b2f0e47ebd, type: 3}
+  weaponOverride: {fileID: 22100000, guid: 3962cf0124764a240b56daf389f1b142, type: 2}
+  isRightHanded: 0
+  canCancelAnimation: 0
+  hasHyperArmor: 0
+  knockback: 0
+  feedbackShakePower: 0
+  projectilePrefab: {fileID: 2120856755084213017, guid: 7fca4beb41bea344498a0342f24cf7ea, type: 3}
+  attackSound: {fileID: 8300000, guid: 2fff7e0a7c7e9474bbbef6e1c8acb2c7, type: 3}
+  impactEffect: {fileID: 0}
+  impactSound: {fileID: 0}

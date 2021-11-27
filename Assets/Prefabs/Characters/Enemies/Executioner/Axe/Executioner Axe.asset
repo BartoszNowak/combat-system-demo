@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24a376824cd5939458385eddd7398c72, type: 3}
+  m_Name: Executioner Axe
+  m_EditorClassIdentifier: 
+  range: 2
+  damage: 60
+  timeBetweenAttacks: 2
+  weaponPrefab: {fileID: 2759256407701818647, guid: 10949ac8b8bb028469d57ce7da077387, type: 3}
+  weaponOverride: {fileID: 22100000, guid: b0227356b887554418dd1ea35c00297d, type: 2}
+  isRightHanded: 1
+  canCancelAnimation: 0
+  hasHyperArmor: 1
+  knockback: 0.2
+  feedbackShakePower: 1
+  projectilePrefab: {fileID: 0}
+  attackSound: {fileID: 0}
+  impactEffect: {fileID: 0}
+  impactSound: {fileID: 0}

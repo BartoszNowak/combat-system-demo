@@ -1,3 +1,4 @@
+using RPG.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,6 +31,12 @@ namespace RPG.Combat
         private float feedbackShakePower = 0f;
         [SerializeField]
         private GameObject projectilePrefab = null;
+        [SerializeField]
+        private AudioClip attackSound = null;
+        [SerializeField]
+        private GameObject impactEffect = null;
+        [SerializeField]
+        private AudioClip impactSound = null;
 
         public float GetRange()
 		{
@@ -43,25 +50,36 @@ namespace RPG.Combat
 		{
             return timeBetweenAttacks;
 		}
-
         public bool CanCancelAnimation()
 		{
             return canCancelAnimation;
 		}
-
         public bool HasHyperArmor()
         {
             return hasHyperArmor;
         }
-
         public float GetKnockback()
 		{
             return knockback;
 		}
-
         public float GetFeedbackShakePower()
         {
             return feedbackShakePower;
+        }
+        public AudioClip GetAttackSound()
+		{
+            return attackSound;
+
+        }
+        public GameObject GetImpactEffect()
+        {
+            return impactEffect;
+
+        }
+        public AudioClip GetImpactSound()
+        {
+            return impactSound;
+
         }
 
         const string weaponName = "Weapon";
@@ -73,19 +91,19 @@ namespace RPG.Combat
 			OverrideAnimations(animator);
 		}
 
-        //public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target, GameObject attacker)
-        //{
-        //    var projectile = Instantiate(projectilePrefab, GetHandTransform(rightHand, leftHand).position, Quaternion.identity);
-        //    projectile.GetComponent<Projectile>().SetTarget(target, damage, attacker);
-        //}
+		public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target, GameObject attacker)
+		{
+			var projectile = Instantiate(projectilePrefab, GetHandTransform(rightHand, leftHand).position, Quaternion.identity);
+			projectile.GetComponent<Projectile>().SetTarget(target, damage, attacker);
+		}
 
-        //public void LaunchProjectile(Transform rightHand, Transform leftHand, Vector3 direction, GameObject attacker)
-        //{
-        //    var projectile = Instantiate(projectilePrefab, GetHandTransform(rightHand, leftHand).position, Quaternion.identity);
-        //    projectile.GetComponent<Projectile>().SetDirection(direction, damage, attacker);
-        //}
+		public void LaunchProjectile(Transform rightHand, Transform leftHand, Vector3 direction, GameObject attacker)
+		{
+			var projectile = Instantiate(projectilePrefab, GetHandTransform(rightHand, leftHand).position, Quaternion.identity);
+			projectile.GetComponent<Projectile>().SetDirection(direction, damage, attacker);
+		}
 
-        private void SpawnWeapon(Transform rightHand, Transform leftHand)
+		private void SpawnWeapon(Transform rightHand, Transform leftHand)
 		{
 			if (weaponPrefab != null)
 			{

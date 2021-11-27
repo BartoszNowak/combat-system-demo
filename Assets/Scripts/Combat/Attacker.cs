@@ -64,8 +64,11 @@ namespace RPG.Combat
 
         internal void TriggerAttack()
         {
-            //Triggers Hit and Shoot methods
-            animator.SetTrigger("attack");
+			//var source = gameObject.GetComponent<AudioSource>();
+			//source.clip = currentWeapon.GetAttackSound();
+			//source.Play();
+			//Triggers Hit and Shoot methods
+			animator.SetTrigger("attack");
             animator.ResetTrigger("attackCancel");
         }
 
@@ -83,12 +86,13 @@ namespace RPG.Combat
             if (target == null) return;
             if (!CanAttack(target)) return;
 
-			var health = target.GetComponent<Health>();            
-			if (health != null)
+			var targetsHealth = target.GetComponent<Health>();            
+			if (targetsHealth != null)
 			{
-                target.GetComponent<ActionManager>().CancelCurrentAction();
+                ShowImpactEffect(target);
+                PlayImpactSound();
                 target.GetComponent<Mover>().Knockback(transform.forward, currentWeapon.GetKnockback());
-                health.DealDamage(currentWeapon.GetDamage(), gameObject);
+                targetsHealth.DealDamage(currentWeapon.GetDamage(), gameObject);
 			}
             if(currentWeapon.CanCancelAnimation())
 			{
@@ -100,16 +104,16 @@ namespace RPG.Combat
         //Animation trigger
         void Shoot()
         {
-            //if (target == null)
-            //{
-            //    currentWeapon.LaunchProjectile(rightHand, leftHand, transform.forward, gameObject);
-            //}
-            //else
-            //{
-            //    var targetHealth = target.GetComponent<Health>();
-            //    currentWeapon.LaunchProjectile(rightHand, leftHand, targetHealth, gameObject);
-            //}
-        }
+			if (target == null)
+			{
+				currentWeapon.LaunchProjectile(rightHand, leftHand, transform.forward, gameObject);
+			}
+			else
+			{
+				var targetHealth = target.GetComponent<Health>();
+				currentWeapon.LaunchProjectile(rightHand, leftHand, targetHealth, gameObject);
+			}
+		}
 
 		internal bool CanAttack(float angle, float distance)
 		{
@@ -122,6 +126,23 @@ namespace RPG.Combat
             var distance = directionVector.magnitude;
             var angle = Vector3.Angle(directionVector, transform.forward);
             return angle <= InteractionAngle && distance < currentWeapon.GetRange();
+        }
+
+        private void PlayImpactSound()
+		{
+            var impactSound = currentWeapon.GetImpactSound();
+            if (impactSound == null) return;
+            AudioSource.PlayClipAtPoint(impactSound, health.transform.position);
+        }
+
+        private void ShowImpactEffect(Transform targetTransform)
+		{
+            var effect = currentWeapon.GetImpactEffect();
+            if (effect == null) return;
+            var collider = target.GetComponent<CapsuleCollider>();
+
+            var offset = collider != null ? Vector3.up * collider.height / 2f : Vector3.zero;
+            Instantiate(effect, targetTransform.position + offset, targetTransform.rotation);
         }
     }
 }

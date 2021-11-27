@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24a376824cd5939458385eddd7398c72, type: 3}
+  m_Name: EnemySword
+  m_EditorClassIdentifier: 
+  range: 1.8
+  damage: 5
+  timeBetweenAttacks: 2
+  weaponPrefab: {fileID: 8374534536142597007, guid: 38641adc838db744caabc8d361aa59ab, type: 3}
+  weaponOverride: {fileID: 22100000, guid: 23df1d4187396c644a93c33d73d82427, type: 2}
+  isRightHanded: 1
+  canCancelAnimation: 0
+  hasHyperArmor: 0
+  knockback: 0.05
+  feedbackShakePower: 0
+  projectilePrefab: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: 910e8706626b66442a017c3a918b1db9, type: 3}
+  impactEffect: {fileID: 1489431029902184, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+  impactSound: {fileID: 8300000, guid: 03612b24e63cf944c882969bafac70de, type: 3}

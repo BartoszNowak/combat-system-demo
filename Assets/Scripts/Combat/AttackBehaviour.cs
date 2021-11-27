@@ -15,11 +15,15 @@ namespace RPG.Combat
         private bool start;
         private bool end;
 
+        private AudioSource audioSource;
+
         void Enter(Animator animator)
         {
             var attacker = animator.GetComponent<Attacker>();
             var weapon = attacker.GetCurrentWeapon();
             animator.SetBool("hyperArmor", weapon.HasHyperArmor());
+
+            PlayAttackSound(animator, weapon.GetAttackSound());
         }
 
         void Exit(Animator animator)
@@ -65,5 +69,19 @@ namespace RPG.Combat
                 end = true;
             }
         }
+
+        private void PlayAttackSound(Animator animator, AudioClip attackSound)
+		{
+            audioSource = animator.GetComponent<AudioSource>();
+            audioSource.clip = attackSound;
+            audioSource.Play();
+        }
+
+        private void StopAttackSound()
+		{
+            if (!audioSource.isPlaying) return;
+
+            audioSource.Stop();
+		}
 	}
 }

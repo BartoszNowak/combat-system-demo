@@ -18,6 +18,8 @@ namespace RPG.Movement
         internal ActionManager actionManager = null;
         private float maxSpeed;
 
+        internal Health health;
+
         void Start()
         {
             animator = GetComponent<Animator>();
@@ -25,11 +27,14 @@ namespace RPG.Movement
             actionManager = GetComponent<ActionManager>();
 
             maxSpeed = navMeshAgent.speed;
+
+            health = GetComponent<Health>();
         }
 
 		private void Update()
 		{
-			UpdateLocomotionAnimation();
+            navMeshAgent.enabled = !health.IsDead();
+            UpdateLocomotionAnimation();
 		}
 
 		public void Move(float horizontal, float vertical)

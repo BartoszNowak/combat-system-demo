@@ -42,7 +42,7 @@ public class DamageFlash : MonoBehaviour
 
         materialsReplace[modelRenderer.materials.Length - 1] = damageFlashMaterial;
         modelRenderer.materials = materialsReplace;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         modelRenderer.materials = materialsOriginal;
     }
 }

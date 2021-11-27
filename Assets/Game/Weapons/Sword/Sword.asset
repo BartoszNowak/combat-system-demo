@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   range: 1.8
-  damage: 10
-  timeBetweenAttacks: 1
+  damage: 5
+  timeBetweenAttacks: 1.5
   weaponPrefab: {fileID: 8374534536142597007, guid: bfc39fca044ad2f49baadcb69c2a8466, type: 3}
-  weaponOverride: {fileID: 22100000, guid: 8e17afb0b8ba1ef4284f6c156ead21da, type: 2}
+  weaponOverride: {fileID: 22100000, guid: 23df1d4187396c644a93c33d73d82427, type: 2}
   isRightHanded: 1
   canCancelAnimation: 1
   hasHyperArmor: 0
   knockback: 0.05
   feedbackShakePower: 0
   projectilePrefab: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: 910e8706626b66442a017c3a918b1db9, type: 3}
+  impactEffect: {fileID: 1489431029902184, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+  impactSound: {fileID: 8300000, guid: 03612b24e63cf944c882969bafac70de, type: 3}
