@@ -34,7 +34,7 @@ namespace RPG.Combat
             }
             else
 			{
-                transform.LookAt(GetAimLocation());
+                transform.LookAt(GetAimLocation(target.transform));
 			}
         }
 
@@ -42,7 +42,7 @@ namespace RPG.Combat
         {
 			if (isHoming && target != null && !target.IsDead())
 			{
-				transform.LookAt(GetAimLocation());
+				transform.LookAt(GetAimLocation(target.transform));
 			}
 			transform.Translate(Vector3.forward * Time.deltaTime * projectileSpeed);
         }
@@ -65,12 +65,12 @@ namespace RPG.Combat
             Destroy(gameObject, maxLifetime);
         }
 
-        private Vector3 GetAimLocation()
+        private Vector3 GetAimLocation(Transform targetTransform)
         {
-            var collider = target.GetComponent<CapsuleCollider>();
-            if (collider == null) return target.transform.position;
+            var collider = targetTransform.GetComponent<CapsuleCollider>();
+            if (collider == null) return targetTransform.position;
 
-            return target.transform.position + Vector3.up * collider.height / 2f;
+            return targetTransform.position + Vector3.up * collider.height / 2f;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -80,7 +80,7 @@ namespace RPG.Combat
             if (health == null) return;
             if (health.IsDead()) return;
 
-            ShowImpactEffect();
+            ShowImpactEffect(other.transform);
 
             AudioSource.PlayClipAtPoint(impactSound, transform.position);
             Camera.main.GetComponent<CameraShake>().TriggerShake(feedbackShakePower);
@@ -89,10 +89,11 @@ namespace RPG.Combat
             Destroy(gameObject);
         }
 
-        private void ShowImpactEffect()
-        {
+        private void ShowImpactEffect(Transform targetTransform) 
+        { 
             if (impactEffect == null) return;
-            Instantiate(impactEffect, GetAimLocation(), transform.rotation);
+            //var location = collider.transform.position + Vector3.up* collider.height / 2f;
+            Instantiate(impactEffect, GetAimLocation(targetTransform), transform.rotation);
         }
     }
 }

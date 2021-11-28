@@ -23,6 +23,6 @@ MonoBehaviour:
   knockback: 0.2
   feedbackShakePower: 1
   projectilePrefab: {fileID: 0}
-  attackSound: {fileID: 0}
-  impactEffect: {fileID: 0}
-  impactSound: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: e51adc07fba690b4ab2db75a8db7a34b, type: 3}
+  impactEffect: {fileID: 1489431029902184, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+  impactSound: {fileID: 8300000, guid: 6c201ca2d69e2804abab9e09a8ad44df, type: 3}

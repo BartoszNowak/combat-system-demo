@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 15
   damage: 10
-  timeBetweenAttacks: 1.8
+  timeBetweenAttacks: 1.5
   weaponPrefab: {fileID: 5047402449556661361, guid: ef344bd425680134e878837a518ca4fe, type: 3}
   weaponOverride: {fileID: 22100000, guid: 1140cb0fd25108847b3ca8a50ede54a9, type: 2}
   isRightHanded: 0

@@ -12,9 +12,14 @@ public class DamageFlash : MonoBehaviour
 
     private Health health;
 
-    private void Awake()
+    private const float damageFlashTime = 0.2f;
+    private float damageFlashEllapsedTime = Mathf.Infinity;
+	private Material originalMaterial;
+
+	private void Awake()
 	{
         health = GetComponent<Health>();
+        originalMaterial = modelRenderer.material;
     }
 
 	private void OnEnable()
@@ -27,13 +32,40 @@ public class DamageFlash : MonoBehaviour
         health.OnTakeDamage -= Show;
     }
 
-    public void Show(int damage)
+	//private void Update()
+	//{
+ //       if (originalMaterial == null) return;
+
+ //       damageFlashEllapsedTime += Time.deltaTime;
+ //       if (damageFlashEllapsedTime > damageFlashTime)
+ //       {
+ //           modelRenderer.material = originalMaterial;
+ //       }
+ //   }
+
+	public void Show(int damage)
     {
+        //      if(originalMaterial == null)
+        //{
+        //          originalMaterial = modelRenderer.material;
+        //      }
+        //      damageFlashEllapsedTime = 0f;
+        //      modelRenderer.material = damageFlashMaterial;
+
         StartCoroutine(ShowDamageFlash());
     }
 
     private IEnumerator ShowDamageFlash()
 	{
+        modelRenderer.material = damageFlashMaterial;
+
+        yield return new WaitForSeconds(0.2f);
+
+        modelRenderer.material = originalMaterial;
+    }
+
+    private IEnumerator ShowDamageFlashOld()
+    {
         var materialsOriginal = new Material[modelRenderer.materials.Length];
         modelRenderer.materials.CopyTo(materialsOriginal, 0);
 

@@ -6,7 +6,10 @@ namespace RPG.Combat
 {
     public class PlayerAttacker : Attacker
     {
-        private void Update()
+        [SerializeField]
+        private TargetIndicator targetIndicator;
+
+		private void Update()
 		{
             if (health.IsDead()) return;
 
@@ -37,13 +40,13 @@ namespace RPG.Combat
             }
             if (target != null && target != targetEnemy)
             {
-                target.GetComponent<Target>().RemoveTarget();
+                targetIndicator.RemoveTarget();
                 target = null;
             }
             if (targetEnemy != null)
             {
                 target = targetEnemy;
-                target.GetComponent<Target>().SetAsTarget();
+                targetIndicator.SetAsTarget(targetEnemy);
             }
         }
     }

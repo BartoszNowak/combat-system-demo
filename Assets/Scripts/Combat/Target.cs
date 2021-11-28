@@ -4,42 +4,42 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject targetIndicatorPrefab = null;
+ //   [SerializeField]
+ //   private GameObject targetIndicatorPrefab = null;
 
-    private GameObject targetIndicator;
+ //   private GameObject targetIndicator;
 
-    private void Start()
-	{
-        targetIndicator = Instantiate(targetIndicatorPrefab);
+ //   private void Start()
+	//{
+ //       targetIndicator = Instantiate(targetIndicatorPrefab);
 
-	}
+	//}
 
-	private void Update()
-	{
-		if(targetIndicator != null && targetIndicator.activeSelf)
-		{
-			var collider = GetComponent<CapsuleCollider>();
-			if (collider == null) return;
+	//private void Update()
+	//{
+	//	if(targetIndicator != null && targetIndicator.activeSelf)
+	//	{
+	//		var collider = GetComponent<CapsuleCollider>();
+	//		if (collider == null) return;
 
-			MoveToTargetPosition();
-		}
-	}
+	//		MoveToTargetPosition();
+	//	}
+	//}
 
-	private void MoveToTargetPosition()
-	{
-		Vector3 offset = new Vector3(2.1f, 0.015f, 0f);
-		targetIndicator.transform.position = transform.position + offset;
-	}
+	//private void MoveToTargetPosition()
+	//{
+	//	Vector3 offset = new Vector3(2.1f, 0.015f, 0f);
+	//	targetIndicator.transform.position = transform.position + offset;
+	//}
 
-	public void SetAsTarget()
-    {
-		MoveToTargetPosition();
-        targetIndicator.SetActive(true);
-    }
+	//public void SetAsTarget()
+ //   {
+	//	MoveToTargetPosition();
+ //       targetIndicator.SetActive(true);
+ //   }
 
-    public void RemoveTarget()
-    {
-        targetIndicator.SetActive(false);
-    }
+ //   public void RemoveTarget()
+ //   {
+ //       targetIndicator.SetActive(false);
+ //   }
 }

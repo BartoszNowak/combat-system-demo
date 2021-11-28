@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelRenderer: {fileID: 0}
-  damageFlashMaterial: {fileID: 2100000, guid: e8004a46d8e073d49a7b14fe1dfbb819, type: 2}
+  damageFlashMaterial: {fileID: 2100000, guid: f3049291e1f1d514eb851c787328b6e0, type: 2}
 --- !u!82 &2169899021889013105
 AudioSource:
   m_ObjectHideFlags: 0

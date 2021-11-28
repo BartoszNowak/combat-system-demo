@@ -4667,7 +4667,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: f9fa7768fbf327049884a40be125ebc5, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9317,7 +9316,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 9efedd2a02a24ac479e285d244f6b34e, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9374,6 +9372,7 @@ GameObject:
   - component: {fileID: 4597830263558120}
   - component: {fileID: 198355779183106702}
   - component: {fileID: 199298478915647496}
+  - component: {fileID: 7497869445986940993}
   m_Layer: 0
   m_Name: FX_Explosion_Body_Bloody_01
   m_TagString: Untagged
@@ -13952,7 +13951,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: f9fa7768fbf327049884a40be125ebc5, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13998,6 +13996,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &7497869445986940993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277154925287174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 090b2b97af333854e869124c1bc4a146, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1583149892273974
 GameObject:
   m_ObjectHideFlags: 0
@@ -18566,7 +18576,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: f9fa7768fbf327049884a40be125ebc5, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
