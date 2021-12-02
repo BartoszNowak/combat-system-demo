@@ -1817,6 +1817,7 @@ MonoBehaviour:
   rightHand: {fileID: 3487728826424051717}
   leftHand: {fileID: 5286484225027730269}
   defaultWeapon: {fileID: 11400000, guid: 62c6fdcf8fede6b45b47fc2141de32b1, type: 2}
+  targetIndicator: {fileID: 0}
 --- !u!114 &8852451728959884786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1829,3 +1830,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5eeb8fd7f26474985afa7eb6378178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapons:
+  - {fileID: 11400000, guid: 62c6fdcf8fede6b45b47fc2141de32b1, type: 2}
+  - {fileID: 11400000, guid: 1f4f560533e56384fa974118f335762d, type: 2}

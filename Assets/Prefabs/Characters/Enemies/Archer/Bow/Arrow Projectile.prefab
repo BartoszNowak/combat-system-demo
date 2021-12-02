@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f97c10426acb08b43b15e98809ceff00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 12
+  projectileSpeed: 18
   isHoming: 0
   impactEffect: {fileID: 1489431029902184, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
   maxLifetime: 10

@@ -1737,6 +1737,14 @@ PrefabInstance:
       propertyPath: chaseDistance
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: -6678229739180195846, guid: 49d768598d6bc0d488383c8bcc9d2f31, type: 3}
+      propertyPath: patrolSpeedMultiplier
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -6678229739180195846, guid: 49d768598d6bc0d488383c8bcc9d2f31, type: 3}
+      propertyPath: callNerbyEnemiesDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 378259632172425251, guid: 49d768598d6bc0d488383c8bcc9d2f31, type: 3}
       propertyPath: modelRenderer
       value: 

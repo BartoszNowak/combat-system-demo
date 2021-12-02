@@ -11,13 +11,16 @@ namespace RPG.Control
 	public class PlayerController : MonoBehaviour
 	{
 		private Mover movement;
-		private Attacker combatAgent;
+		private Attacker attacker;
 		private Health health;
+
+		[SerializeField]
+		private Weapon[] weapons;
 
 		void Start()
 		{
 			movement = GetComponent<Mover>();
-			combatAgent = GetComponent<Attacker>();
+			attacker = GetComponent<Attacker>();
 			health = GetComponent<Health>();
 		}
 
@@ -33,7 +36,14 @@ namespace RPG.Control
 		{
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
-				combatAgent.Attack();
+				attacker.Attack();
+			}
+			for (int i = 0; i < weapons.Length; i++)
+			{
+				if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+				{
+					attacker.EquipWeapon(weapons[i]);
+				}
 			}
 		}
 

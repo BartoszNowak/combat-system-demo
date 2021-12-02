@@ -64,9 +64,6 @@ namespace RPG.Combat
 
         internal void TriggerAttack()
         {
-			//var source = gameObject.GetComponent<AudioSource>();
-			//source.clip = currentWeapon.GetAttackSound();
-			//source.Play();
 			//Triggers Hit and Shoot methods
 			animator.SetTrigger("attack");
             animator.ResetTrigger("attackCancel");

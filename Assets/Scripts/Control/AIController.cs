@@ -12,8 +12,6 @@ namespace RPG.Control
     [RequireComponent(typeof(Health))]
     public class AIController : MonoBehaviour
     {
-        private const float InteractionAngle = 70f;
-
         [SerializeField]
         private float chaseDistance = 5f;
         [SerializeField]
@@ -28,8 +26,11 @@ namespace RPG.Control
         private float aggroTime = 10f;
         [SerializeField]
         private float callNerbyEnemiesDistance = 10f;
-        //[SerializeField]
-        //private PatrolPath patrolPath;
+		[SerializeField]
+		private PatrolPath patrolPath;
+
+        [SerializeField]
+        private bool debug;
 
         private Mover movement;
         private AIAttacker combatAgent;
@@ -63,6 +64,7 @@ namespace RPG.Control
         void Update()
         {
             if (IsPlayerDead() || IsThisEnemyDead()) return;
+            DebugEnemy();
 
             if (IsPlayerInAttackRange() || aggrevatedTimer < aggroTime)
             {
@@ -84,7 +86,7 @@ namespace RPG.Control
 		private void Aggrevate(int damage)
 		{
             aggrevatedTimer = 0f;
-		}
+        }
 
 		private void AttackingBehaviour()
         {
@@ -95,7 +97,7 @@ namespace RPG.Control
             CallNerbyEnemies();
         }
 
-		private void CallNerbyEnemies()
+        private void CallNerbyEnemies()
 		{
             var hits = Physics.SphereCastAll(transform.position, callNerbyEnemiesDistance, Vector3.up, 0);
             foreach(var hit in hits)
@@ -117,34 +119,33 @@ namespace RPG.Control
         {
             Vector3 nextPosition = guardLocation;
 
-            //if(patrolPath != null)
-            //{
-            //    nextPosition = patrolPath.GetWaypoint(currentWaypointIndex);
+			if (patrolPath != null)
+			{
+				nextPosition = patrolPath.GetWaypoint(currentWaypointIndex);
 
-            //    if (Vector3.Distance(transform.position, nextPosition) < waypointDistanceTolerance)
-            //    {
-            //        if(timeAtWaypoint >= dwellingTime)
-            //        {
-            //            currentWaypointIndex = patrolPath.GetNextIndex(currentWaypointIndex);
-            //            timeAtWaypoint = 0;
-            //        }
-            //        else
-            //        {
-            //            timeAtWaypoint += Time.deltaTime;
-            //        }
-            //    }
-            //}
+				if (Vector3.Distance(transform.position, nextPosition) < waypointDistanceTolerance)
+				{
+					if (timeAtWaypoint >= dwellingTime)
+					{
+						currentWaypointIndex = patrolPath.GetNextIndex(currentWaypointIndex);
+						timeAtWaypoint = 0;
+					}
+					else
+					{
+						timeAtWaypoint += Time.deltaTime;
+					}
+				}
+			}
 
-            movement.MoveTo(nextPosition, patrolSpeedMultiplier);
+			movement.MoveTo(nextPosition, patrolSpeedMultiplier);
         }
 
         private bool IsPlayerInAttackRange()
         {
             var directionVector = player.transform.position - transform.position;
             var distance = directionVector.magnitude;
-            var angle = Vector3.Angle(directionVector, transform.forward);
 
-            return distance <= chaseDistance;// && angle <= InteractionAngle;
+            return distance <= chaseDistance;
         }
 
         private bool IsPlayerDead()
@@ -156,6 +157,21 @@ namespace RPG.Control
         {
             return health.IsDead();
         }
-    }
+
+		private void OnDrawGizmos()
+		{
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, chaseDistance);
+            //Gizmos.color = Color.blue;
+            //Gizmos.DrawWireSphere(transform.position, callNerbyEnemiesDistance);
+        }
+
+        private void DebugEnemy()
+		{
+            if (!debug) return;
+
+            Debug.Log($"Enemy {gameObject.name}; Aggro time = {aggrevatedTimer}/{aggroTime}; Is Player in range = {IsPlayerInAttackRange()}");
+		}
+	}
 
 }
