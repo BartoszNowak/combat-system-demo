@@ -4,17 +4,7 @@ using UnityEngine;
 
 public class TargetIndicator : MonoBehaviour
 {
-    //[SerializeField]
-    //private GameObject targetIndicatorPrefab = null;
-
-    //private GameObject targetIndicator;
 	private Transform target;
-
- //   private void Start()
-	//{
- //       targetIndicator = Instantiate(targetIndicatorPrefab);
-	//}
-
 	private void Update()
 	{
 		if(gameObject != null && gameObject.activeSelf)
