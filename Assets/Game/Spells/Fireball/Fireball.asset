@@ -9,18 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24a376824cd5939458385eddd7398c72, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ba39497da7b60242befcfb0b00215e0, type: 3}
   m_Name: Fireball
   m_EditorClassIdentifier: 
-  range: 10
+  range: 12
   damage: 20
-  timeBetweenAttacks: 1
-  weaponPrefab: {fileID: 0}
-  weaponOverride: {fileID: 22100000, guid: b8cc5bccb27144a4dabaa92deb5797f8, type: 2}
-  isRightHanded: 0
-  canCancelAnimation: 0
+  manaCost: 10
+  timeBetweenCasts: 1
+  spellOverride: {fileID: 22100000, guid: b8cc5bccb27144a4dabaa92deb5797f8, type: 2}
   hasHyperArmor: 0
-  knockback: 0
+  knockback: 0.2
   feedbackShakePower: 0
   projectilePrefab: {fileID: 3151549809301280337, guid: 1207817624b40ee4caa3593275788ffa, type: 3}
   attackSound: {fileID: 8300000, guid: 3c7cbc7a2c4bd9847a32cb561bc39e03, type: 3}

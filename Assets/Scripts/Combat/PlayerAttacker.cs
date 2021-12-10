@@ -14,12 +14,14 @@ namespace RPG.Combat
             if (health.IsDead()) return;
 
             timeSinceLastAttack += Time.deltaTime;
+            timeSinceLastSpell += Time.deltaTime;
             TargetEnemy();
         }
 
         private void TargetEnemy()
         {
-            var hits = Physics.OverlapSphere(transform.position, currentWeapon.GetRange());
+            var range = Mathf.Max(currentWeapon.GetRange(), currentSpell.Range);
+            var hits = Physics.OverlapSphere(transform.position, range);
 
             var smallestAngle = Mathf.Infinity;
             Transform targetEnemy = null;

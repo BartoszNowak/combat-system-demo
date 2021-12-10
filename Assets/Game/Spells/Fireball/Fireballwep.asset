@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24a376824cd5939458385eddd7398c72, type: 3}
-  m_Name: Enemy Bow
+  m_Name: Fireballwep
   m_EditorClassIdentifier: 
-  range: 15
-  damage: 10
-  timeBetweenAttacks: 1.5
-  weaponPrefab: {fileID: 5047402449556661361, guid: ef344bd425680134e878837a518ca4fe, type: 3}
-  weaponOverride: {fileID: 22100000, guid: 46f4e4195e5b79449898049d20f9e4df, type: 2}
+  range: 10
+  damage: 20
+  timeBetweenAttacks: 1
+  weaponPrefab: {fileID: 0}
+  weaponOverride: {fileID: 22100000, guid: b8cc5bccb27144a4dabaa92deb5797f8, type: 2}
   isRightHanded: 0
   canCancelAnimation: 0
   hasHyperArmor: 0
   knockback: 0
   feedbackShakePower: 0
-  projectilePrefab: {fileID: 2120856755084213017, guid: 43907e7b1b472414cb9a0129dd3fe94d, type: 3}
-  attackSound: {fileID: 8300000, guid: 2fff7e0a7c7e9474bbbef6e1c8acb2c7, type: 3}
+  projectilePrefab: {fileID: 3151549809301280337, guid: 1207817624b40ee4caa3593275788ffa, type: 3}
+  attackSound: {fileID: 8300000, guid: 3c7cbc7a2c4bd9847a32cb561bc39e03, type: 3}
   impactEffect: {fileID: 0}
   impactSound: {fileID: 0}

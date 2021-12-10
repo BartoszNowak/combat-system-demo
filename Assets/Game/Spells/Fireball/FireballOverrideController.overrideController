@@ -6,6 +6,6 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AxeOverrideController
+  m_Name: FireballOverrideController
   m_Controller: {fileID: 9100000, guid: 81aa9e979db8abe42916b8899aa57ba7, type: 2}
   m_Clips: []

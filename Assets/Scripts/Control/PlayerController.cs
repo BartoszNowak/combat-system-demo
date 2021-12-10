@@ -34,17 +34,34 @@ namespace RPG.Control
 
 		private void HandleCombat()
 		{
-			if (Input.GetKeyDown(KeyCode.Space))
+			if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
 			{
 				attacker.Attack();
 			}
-			for (int i = 0; i < weapons.Length; i++)
+			if (Input.GetMouseButtonDown(1))
 			{
-				if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+				var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+				RaycastHit hit;
+				var hasHit = Physics.Raycast(ray, out hit);
+				var target = hasHit ? hit.point : Vector3.zero;
+				if(hasHit)
 				{
-					attacker.EquipWeapon(weapons[i]);
+					Debug.DrawRay(ray.origin, ray.direction * 100);
 				}
+				var direction = target - transform.position;
+				attacker.CastSpell(direction);
 			}
+			if(Input.GetKeyDown(KeyCode.LeftShift))
+			{
+				attacker.CastSpell(Vector3.zero);
+			}
+			//for (int i = 0; i < weapons.Length; i++)
+			//{
+			//	if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+			//	{
+			//		attacker.EquipWeapon(weapons[i]);
+			//	}
+			//}
 		}
 
 		private void HandleMovement()

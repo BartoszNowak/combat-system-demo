@@ -16,6 +16,8 @@ namespace RPG.Combat
         private Transform leftHand = null;
         [SerializeField]
         internal Weapon defaultWeapon = null;
+        [SerializeField]
+        internal Spell defaultSpell = null;
 
         internal Animator animator;
         internal ActionManager actionManager;
@@ -23,8 +25,12 @@ namespace RPG.Combat
         internal Mover mover;
 
         internal Transform target;
-        internal float timeSinceLastAttack = Mathf.Infinity;
+
         internal Weapon currentWeapon = null;
+        internal float timeSinceLastAttack = Mathf.Infinity;
+
+        internal Spell currentSpell = null;
+        internal float timeSinceLastSpell = Mathf.Infinity;
 
         private void Start()
         {
@@ -33,10 +39,13 @@ namespace RPG.Combat
             actionManager = GetComponent<ActionManager>();
             health = GetComponent<Health>();
             EquipWeapon(defaultWeapon);
+            AttuneSpell(defaultSpell);
+            
         }
 
         public void Attack()
         {
+            if (actionManager.HasActiveAction()) return;
             if (timeSinceLastAttack < currentWeapon.GetTimeBetweenAttacks()) return;
             if (target != null)
             {
@@ -45,16 +54,41 @@ namespace RPG.Combat
             TriggerAttack();
             timeSinceLastAttack = 0f;
         }
+
+        public void CastSpell(Vector3 direction)
+        {
+            if (actionManager.HasActiveAction()) return;
+            if (timeSinceLastSpell < currentSpell.TimeBetweenCasts) return;
+            if (target != null)
+            {
+                transform.LookAt(target);
+            }
+            else if(direction != Vector3.zero)
+			{
+                transform.rotation = Quaternion.LookRotation(direction);
+            }
+            
+            TriggerSpellCast();
+            timeSinceLastSpell = 0f;
+        }
+
         public void EquipWeapon(Weapon weapon)
         {
             currentWeapon = weapon;
             currentWeapon.Equip(rightHand, leftHand, animator);
         }
 
-        public Weapon GetCurrentWeapon()
+        public void AttuneSpell(Spell spell)
         {
-            return currentWeapon;
+            if (spell == null) return;
+            currentSpell = spell;
+            currentSpell.Attune(animator);
         }
+
+        public Weapon CurrentWeapon { get { return currentWeapon; } }
+
+        public Spell CurrentSpell { get { return currentSpell; } }
+
 
         public void Cancel()
         {
@@ -62,11 +96,16 @@ namespace RPG.Combat
             timeSinceLastAttack = Mathf.Infinity;
         }
 
+        bool cast = false;
+
         internal void TriggerAttack()
         {
 			//Triggers Hit and Shoot methods
 			animator.SetTrigger("attack");
             animator.ResetTrigger("attackCancel");
+
+            cast = false;
+            animator.ResetTrigger("cast");
         }
 
         private void TriggerAttackCancel()
@@ -74,6 +113,19 @@ namespace RPG.Combat
             //Triggers Hit and Shoot methods
             animator.ResetTrigger("attack");
             animator.SetTrigger("attackCancel");
+
+
+            animator.ResetTrigger("cast");
+        }
+
+
+        internal void TriggerSpellCast()
+        {
+            //Triggers Hit and Shoot methods
+            cast = true;
+            animator.SetTrigger("cast");
+            animator.ResetTrigger("attack");
+            animator.ResetTrigger("attackCancel");
         }
 
         //Animation trigger
@@ -81,7 +133,7 @@ namespace RPG.Combat
         {
             Camera.main.GetComponent<CameraShake>().TriggerShake(currentWeapon.GetFeedbackShakePower());
             if (target == null) return;
-            if (!CanAttack(target)) return;
+            if (!CanAttackMeele(target)) return;
 
 			var targetsHealth = target.GetComponent<Health>();            
 			if (targetsHealth != null)
@@ -101,28 +153,51 @@ namespace RPG.Combat
         //Animation trigger
         void Shoot()
         {
-			if (target == null)
+            if(cast)
 			{
-				currentWeapon.LaunchProjectile(rightHand, leftHand, transform.forward, gameObject);
-			}
-			else
+                if (target == null)
+                {
+                    currentSpell.LaunchProjectile(leftHand, transform.forward, gameObject);
+                }
+                else
+                {
+                    var targetHealth = target.GetComponent<Health>();
+                    currentSpell.LaunchProjectile(leftHand, targetHealth, gameObject);
+                }
+                cast = false;
+            }
+            else
 			{
-				var targetHealth = target.GetComponent<Health>();
-				currentWeapon.LaunchProjectile(rightHand, leftHand, targetHealth, gameObject);
-			}
+                if (target == null)
+                {
+                    currentWeapon.LaunchProjectile(rightHand, leftHand, transform.forward, gameObject);
+                }
+                else
+                {
+                    var targetHealth = target.GetComponent<Health>();
+                    currentWeapon.LaunchProjectile(rightHand, leftHand, targetHealth, gameObject);
+                }
+            }
 		}
 
 		internal bool CanAttack(float angle, float distance)
 		{
-			return angle <= InteractionAngle && distance < currentWeapon.GetRange();
+			return angle <= InteractionAngle && distance < GetMaxRange();
 		}
 
-		internal bool CanAttack(Transform targetEnemy)
+		internal bool CanAttackMeele(Transform targetEnemy)
         {
             var directionVector = targetEnemy.position - transform.position;
             var distance = directionVector.magnitude;
             var angle = Vector3.Angle(directionVector, transform.forward);
             return angle <= InteractionAngle && distance < currentWeapon.GetRange();
+        }
+
+        private float GetMaxRange()
+		{
+            var weaponRange = currentWeapon != null ? currentWeapon.GetRange() : 0f;
+            var spellRange = currentSpell != null ? currentSpell.Range : 0f;
+            return Mathf.Max(weaponRange, spellRange);
         }
 
         private void PlayImpactSound()

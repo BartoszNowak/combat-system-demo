@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class AttackBehaviour : StateMachineBehaviour, IAction
+    public class CastBehaviour : StateMachineBehaviour, IAction
     {
         private float animationTime = 0f;
 
@@ -20,10 +20,10 @@ namespace RPG.Combat
         void Enter(Animator animator)
         {
             var attacker = animator.GetComponent<Attacker>();
-            var weapon = attacker.CurrentWeapon;
-            animator.SetBool("hyperArmor", weapon.HasHyperArmor());
+            var spell = attacker.CurrentSpell;
+            animator.SetBool("hyperArmor", spell.HasHyperArmor);
 
-            PlayAttackSound(animator, weapon.GetAttackSound());
+            PlayAttackSound(animator, spell.AttackSound);
         }
 
         void Exit(Animator animator)
@@ -76,12 +76,5 @@ namespace RPG.Combat
             audioSource.clip = attackSound;
             audioSource.Play();
         }
-
-        private void StopAttackSound()
-		{
-            if (!audioSource.isPlaying) return;
-
-            audioSource.Stop();
-		}
 	}
 }
