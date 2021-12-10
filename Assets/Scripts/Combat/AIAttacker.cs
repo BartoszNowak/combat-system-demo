@@ -23,8 +23,9 @@ namespace RPG.Combat
             }
 
             timeSinceLastAttack += Time.deltaTime;
+            timeSinceLastSpell += Time.deltaTime;
 
-			if (!IsInRange() && !actionManager.HasActiveAction())
+            if (!IsInRange() && !actionManager.HasActiveAction())
 			{
 				mover.MoveTo(target.position);
 			}
@@ -60,6 +61,19 @@ namespace RPG.Combat
         public void Attack(GameObject combatTarget)
         {
             target = combatTarget.transform;
+        }
+
+        public override void CastSpell(Vector3 direction)
+        {
+            if (actionManager.HasActiveAction()) return;
+            if (timeSinceLastSpell < currentSpell.TimeBetweenCasts) return;
+            if (target != null)
+            {
+                transform.LookAt(target);
+            }
+
+            TriggerSpellCast();
+            timeSinceLastSpell = 0f;
         }
     }
 }

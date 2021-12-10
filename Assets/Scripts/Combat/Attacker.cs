@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class Attacker : MonoBehaviour
+    public abstract class Attacker : MonoBehaviour
     {
 		private const float InteractionAngle = 70f;
 
@@ -22,6 +22,7 @@ namespace RPG.Combat
         internal Animator animator;
         internal ActionManager actionManager;
 		internal Health health;
+        internal Mana mana;
         internal Mover mover;
 
         internal Transform target;
@@ -38,6 +39,7 @@ namespace RPG.Combat
             animator = GetComponent<Animator>();
             actionManager = GetComponent<ActionManager>();
             health = GetComponent<Health>();
+            mana = GetComponent<Mana>();
             EquipWeapon(defaultWeapon);
             AttuneSpell(defaultSpell);
             
@@ -55,22 +57,7 @@ namespace RPG.Combat
             timeSinceLastAttack = 0f;
         }
 
-        public void CastSpell(Vector3 direction)
-        {
-            if (actionManager.HasActiveAction()) return;
-            if (timeSinceLastSpell < currentSpell.TimeBetweenCasts) return;
-            if (target != null)
-            {
-                transform.LookAt(target);
-            }
-            else if(direction != Vector3.zero)
-			{
-                transform.rotation = Quaternion.LookRotation(direction);
-            }
-            
-            TriggerSpellCast();
-            timeSinceLastSpell = 0f;
-        }
+        public abstract void CastSpell(Vector3 direction);
 
         public void EquipWeapon(Weapon weapon)
         {

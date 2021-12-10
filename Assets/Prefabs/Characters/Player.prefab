@@ -1819,6 +1819,19 @@ MonoBehaviour:
   defaultWeapon: {fileID: 11400000, guid: 62c6fdcf8fede6b45b47fc2141de32b1, type: 2}
   defaultSpell: {fileID: 11400000, guid: 840706439d6f518409cbea6432c8e015, type: 2}
   targetIndicator: {fileID: 0}
+--- !u!114 &8839909512841792446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4169833081632883803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04a552e1b7467ab48ad16d4b87f03cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMana: 50
 --- !u!114 &8852451728959884786
 MonoBehaviour:
   m_ObjectHideFlags: 0

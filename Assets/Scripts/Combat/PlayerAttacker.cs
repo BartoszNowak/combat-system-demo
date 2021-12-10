@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,13 +10,41 @@ namespace RPG.Combat
         [SerializeField]
         private TargetIndicator targetIndicator;
 
-		private void Update()
+        public event Action OnManaWarning;
+
+        private void Update()
 		{
             if (health.IsDead()) return;
 
             timeSinceLastAttack += Time.deltaTime;
             timeSinceLastSpell += Time.deltaTime;
             TargetEnemy();
+        }
+        public override void CastSpell(Vector3 direction)
+        {
+            if (actionManager.HasActiveAction()) return;
+            if (timeSinceLastSpell < currentSpell.TimeBetweenCasts) return;
+
+            if (mana != null && !mana.CanCast(currentSpell.ManaCost))
+            {
+                OnManaWarning?.Invoke();
+                return;
+            }
+            else
+            {
+                mana.DecreaseMana(currentSpell.ManaCost);
+            }
+            if (target != null)
+            {
+                transform.LookAt(target);
+            }
+            else if (direction != Vector3.zero)
+            {
+                transform.rotation = Quaternion.LookRotation(direction);
+            }
+
+            TriggerSpellCast();
+            timeSinceLastSpell = 0f;
         }
 
         private void TargetEnemy()

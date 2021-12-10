@@ -15,7 +15,7 @@ MonoBehaviour:
   range: 12
   damage: 20
   manaCost: 10
-  timeBetweenCasts: 1
+  timeBetweenCasts: 0.5
   spellOverride: {fileID: 22100000, guid: b8cc5bccb27144a4dabaa92deb5797f8, type: 2}
   hasHyperArmor: 0
   knockback: 0.2
