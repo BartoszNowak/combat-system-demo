@@ -30,12 +30,14 @@ namespace RPG.UI
 		private void OnEnable()
 		{
 			health.OnTakeDamage += UpdateHealthBar;
+			health.OnHeal += UpdateHealthBar;
 			health.OnDeath += DestroyHealthBar;
 		}
 
 		private void OnDisable()
 		{
 			health.OnTakeDamage -= UpdateHealthBar;
+			health.OnHeal -= UpdateHealthBar;
 			health.OnDeath -= DestroyHealthBar;
 		}
 

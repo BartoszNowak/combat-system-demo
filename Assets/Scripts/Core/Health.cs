@@ -17,9 +17,10 @@ namespace RPG.Core
         private int currentHealth;
         private bool isDead;
 
-        public delegate void TakeDamage(int damage);
-        public event TakeDamage OnTakeDamage; 
-        public event Action OnDeath; 
+        public delegate void HealthChanged(int amount);
+        public event HealthChanged OnTakeDamage;
+        public event HealthChanged OnHeal;
+        public event Action OnDeath;
 
         private void Awake()
         {
@@ -39,6 +40,12 @@ namespace RPG.Core
 			{
                 GetComponent<Animator>().SetTrigger("hit");
             }
+        }
+
+        public void Heal(int amount)
+		{
+            currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+            OnHeal?.Invoke(amount);
         }
 
         public bool IsDead()

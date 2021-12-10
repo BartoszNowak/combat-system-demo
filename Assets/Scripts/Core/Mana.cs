@@ -31,9 +31,14 @@ namespace RPG.Core
 			}
         }
 
+        public void IncreaseMana(int amount)
+        {
+            currentMana = Mathf.Min(currentMana + amount, maxMana);
+        }
+
         public void DecreaseMana(int amount)
 		{
-            currentMana = Mathf.Max(currentMana - amount, 0); ;
+            currentMana = Mathf.Max(currentMana - amount, 0);
 		}
 
         public bool CanCast(int mana)
