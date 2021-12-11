@@ -20,6 +20,10 @@ namespace RPG.Combat
         private AudioClip impactSound = null;
         [SerializeField]
         private float feedbackShakePower = 0f;
+        [SerializeField]
+        private float areaDamageRange = 0f;
+        [SerializeField]
+        private float areaDamageMultiplier = 1f;
 
         private Vector3 direction;
         private Health target = null;
@@ -86,6 +90,12 @@ namespace RPG.Combat
             Camera.main.GetComponent<CameraShake>().TriggerShake(feedbackShakePower);
 
             health.DealDamage(damage, attacker);
+
+            if(!Mathf.Approximately(areaDamageRange, 0))
+			{
+                AreaDamage(other);
+            }
+            
             Destroy(gameObject);
         }
 
@@ -95,5 +105,19 @@ namespace RPG.Combat
             //var location = collider.transform.position + Vector3.up* collider.height / 2f;
             Instantiate(impactEffect, GetAimLocation(targetTransform), transform.rotation);
         }
+
+        private void AreaDamage(Collider other)
+		{
+            var hits = Physics.OverlapSphere(transform.position, areaDamageRange);
+            foreach(var h in hits)
+			{
+                if (h == other) continue;
+                if (attacker != null && h.tag == attacker.tag) continue;
+                var health = h.GetComponent<Health>();
+                if (health == null) continue;
+
+                health.DealDamage((int)(damage * areaDamageMultiplier), attacker);
+            }
+		}
     }
 }

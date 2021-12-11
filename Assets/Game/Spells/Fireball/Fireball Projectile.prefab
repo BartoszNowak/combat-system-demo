@@ -52,6 +52,8 @@ MonoBehaviour:
   maxLifetime: 10
   impactSound: {fileID: 8300000, guid: 34724566f66407a40b49fc9f492b48f4, type: 3}
   feedbackShakePower: 2
+  areaDamageRange: 1
+  areaDamageMultiplier: 0.5
 --- !u!135 &8464119636186583519
 SphereCollider:
   m_ObjectHideFlags: 0
