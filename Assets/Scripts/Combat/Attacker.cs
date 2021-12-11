@@ -33,6 +33,8 @@ namespace RPG.Combat
         internal Spell currentSpell = null;
         internal float timeSinceLastSpell = Mathf.Infinity;
 
+        bool casting = false;
+
         private void Start()
         {
             mover = GetComponent<Mover>();
@@ -45,7 +47,14 @@ namespace RPG.Combat
             
         }
 
-        public void Attack()
+        private void OnDisable()
+        {
+            if (currentWeapon.HitBox == null) return;
+
+            currentWeapon.HitBox.OnHit -= HitListener;
+        }
+
+		public void Attack()
         {
             if (actionManager.HasActiveAction()) return;
             if (timeSinceLastAttack < currentWeapon.GetTimeBetweenAttacks()) return;
@@ -63,6 +72,9 @@ namespace RPG.Combat
         {
             currentWeapon = weapon;
             currentWeapon.Equip(rightHand, leftHand, animator);
+
+            if (currentWeapon.HitBox == null) return;
+            currentWeapon.HitBox.OnHit += HitListener;
         }
 
         public void AttuneSpell(Spell spell)
@@ -83,15 +95,13 @@ namespace RPG.Combat
             timeSinceLastAttack = Mathf.Infinity;
         }
 
-        bool cast = false;
-
         internal void TriggerAttack()
         {
 			//Triggers Hit and Shoot methods
 			animator.SetTrigger("attack");
             animator.ResetTrigger("attackCancel");
 
-            cast = false;
+            casting = false;
             animator.ResetTrigger("cast");
         }
 
@@ -109,11 +119,23 @@ namespace RPG.Combat
         internal void TriggerSpellCast()
         {
             //Triggers Hit and Shoot methods
-            cast = true;
+            casting = true;
             animator.SetTrigger("cast");
             animator.ResetTrigger("attack");
             animator.ResetTrigger("attackCancel");
         }
+
+        void HitListener(GameObject target)
+        {
+			var targetsHealth = target.GetComponent<Health>();
+
+			if (targetsHealth == null) return;
+
+			ShowImpactEffect(target.transform);
+			PlayImpactSound();
+			target.GetComponent<Mover>().Knockback(transform.forward, currentWeapon.GetKnockback());
+			targetsHealth.DealDamage(currentWeapon.GetDamage(), gameObject);
+		}
 
         //Animation trigger
         void Hit()
@@ -140,7 +162,7 @@ namespace RPG.Combat
         //Animation trigger
         void Shoot()
         {
-            if(cast)
+            if(casting)
 			{
                 if (target == null)
                 {
@@ -151,7 +173,7 @@ namespace RPG.Combat
                     var targetHealth = target.GetComponent<Health>();
                     currentSpell.LaunchProjectile(leftHand, targetHealth, gameObject);
                 }
-                cast = false;
+                casting = false;
             }
             else
 			{
@@ -196,11 +218,13 @@ namespace RPG.Combat
 
         private void ShowImpactEffect(Transform targetTransform)
 		{
+            if (targetTransform == null) return;
             var effect = currentWeapon.GetImpactEffect();
             if (effect == null) return;
-            var collider = target.GetComponent<CapsuleCollider>();
+            var collider = targetTransform.GetComponent<CapsuleCollider>();
 
             var offset = collider != null ? Vector3.up * collider.height / 2f : Vector3.zero;
+
             Instantiate(effect, targetTransform.position + offset, targetTransform.rotation);
         }
     }

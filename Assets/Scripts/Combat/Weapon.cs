@@ -84,6 +84,15 @@ namespace RPG.Combat
 
         const string weaponName = "Weapon";
 
+        private GameObject weaponInstance;
+
+        public HitBoxTrigger HitBox => weaponInstance.GetComponent<HitBoxTrigger>();
+
+        public void EnableHitBox(bool enable)
+		{
+            weaponInstance.GetComponent<CapsuleCollider>().enabled = enable;
+		}
+
         public void Equip(Transform rightHand, Transform leftHand, Animator animator)
 		{
 			DestroyOldWeapon(rightHand, leftHand);
@@ -108,8 +117,8 @@ namespace RPG.Combat
 			if (weaponPrefab != null)
 			{
 				var handTransform = GetHandTransform(rightHand, leftHand);
-				var weapon = Instantiate(weaponPrefab, handTransform);
-				weapon.name = weaponName;
+				weaponInstance = Instantiate(weaponPrefab, handTransform);
+				weaponInstance.name = weaponName;
 			}
 		}
 

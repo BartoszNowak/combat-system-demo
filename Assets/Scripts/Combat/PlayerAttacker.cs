@@ -20,6 +20,17 @@ namespace RPG.Combat
             timeSinceLastSpell += Time.deltaTime;
             TargetEnemy();
         }
+
+        void HitStart()
+        {
+            currentWeapon.EnableHitBox(true);
+        }
+
+        void HitEnd()
+        {
+            currentWeapon.EnableHitBox(false);
+        }
+
         public override void CastSpell(Vector3 direction)
         {
             if (actionManager.HasActiveAction()) return;

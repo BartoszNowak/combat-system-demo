@@ -32,7 +32,6 @@ public class LootDropper : MonoBehaviour
 		foreach (var d in dropList)
 		{
 			var number = Random.Range(0, 100);
-			Debug.Log($"Random number {number}, probability number {100 - d.probability * 100}");
 			if (number < 100 - d.probability * 100) continue;
 
 			var yRot = Random.Range(0, 360);

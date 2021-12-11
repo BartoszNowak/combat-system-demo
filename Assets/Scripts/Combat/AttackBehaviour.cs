@@ -16,11 +16,12 @@ namespace RPG.Combat
         private bool end;
 
         private AudioSource audioSource;
+        private Weapon weapon;
 
         void Enter(Animator animator)
         {
             var attacker = animator.GetComponent<Attacker>();
-            var weapon = attacker.CurrentWeapon;
+            weapon = attacker.CurrentWeapon;
             animator.SetBool("hyperArmor", weapon.HasHyperArmor());
 
             PlayAttackSound(animator, weapon.GetAttackSound());
@@ -39,7 +40,7 @@ namespace RPG.Combat
             actionManager.CancelCurrentAction();
         }
 
-		public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
             var actionManager = animator.GetComponent<ActionManager>();
             actionManager.StartAction(this);

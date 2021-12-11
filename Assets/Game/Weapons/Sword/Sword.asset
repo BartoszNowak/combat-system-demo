@@ -20,7 +20,7 @@ MonoBehaviour:
   isRightHanded: 1
   canCancelAnimation: 1
   hasHyperArmor: 0
-  knockback: 0.05
+  knockback: 0
   feedbackShakePower: 0
   projectilePrefab: {fileID: 0}
   attackSound: {fileID: 8300000, guid: 910e8706626b66442a017c3a918b1db9, type: 3}
