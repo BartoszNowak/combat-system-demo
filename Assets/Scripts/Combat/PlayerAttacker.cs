@@ -21,7 +21,12 @@ namespace RPG.Combat
             TargetEnemy();
         }
 
-        void HitStart()
+		private void OnEnable()
+		{
+            actionManager.OnStateChange += HitEnd;
+		}
+
+		void HitStart()
         {
             currentWeapon.EnableHitBox(true);
         }

@@ -28,6 +28,11 @@ public class MagicTrapSpawner : MonoBehaviour
         StartCoroutine(Loop());
     }
 
+    public void Disable()
+	{
+        attacking = false;
+	}
+
     private IEnumerator Loop()
 	{
         while(attacking)
@@ -87,7 +92,6 @@ public class MagicTrapSpawner : MonoBehaviour
         var limit = 1;
         var s = Mathf.Max(-randomFactor, -ArenaSize - pos);
         var e = Mathf.Min(randomFactor, ArenaSize - pos);
-        //Debug.Log($"from {s} to {e}");
         var result = Random.Range(s, e);
         if (result < limit && result > 0) result = limit;
         if (result > -limit && result < 0) result = -limit;

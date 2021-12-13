@@ -70,6 +70,7 @@ namespace RPG.Combat
 
         public void EquipWeapon(Weapon weapon)
         {
+            //currentWeapon.HitBox.OnHit -= HitListener;
             currentWeapon = weapon;
             currentWeapon.Equip(rightHand, leftHand, animator);
 

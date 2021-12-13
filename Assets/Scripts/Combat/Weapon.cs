@@ -86,7 +86,13 @@ namespace RPG.Combat
 
         private GameObject weaponInstance;
 
-        public HitBoxTrigger HitBox => weaponInstance.GetComponent<HitBoxTrigger>();
+        public HitBoxTrigger HitBox
+		{
+            get
+			{
+                return weaponInstance.GetComponent<HitBoxTrigger>();
+            }
+		}
 
         public void EnableHitBox(bool enable)
 		{
