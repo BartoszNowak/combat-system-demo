@@ -80,20 +80,20 @@ namespace RPG.Combat
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject == attacker.gameObject) return;
-            var health = other.GetComponent<Health>();
-            if (health == null) return;
-            if (health.IsDead()) return;
 
             ShowImpactEffect(other.transform);
-
             AudioSource.PlayClipAtPoint(impactSound, transform.position);
+            if (!Mathf.Approximately(areaDamageRange, 0))
+            {
+                AreaDamage(other);
+            }
             Camera.main.GetComponent<CameraShake>().TriggerShake(feedbackShakePower);
 
-            health.DealDamage(damage, attacker);
+            var health = other.GetComponent<Health>();
 
-            if(!Mathf.Approximately(areaDamageRange, 0))
+            if(health != null && !health.IsDead())
 			{
-                AreaDamage(other);
+                health.DealDamage(damage, attacker);
             }
             
             Destroy(gameObject);

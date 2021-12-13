@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5851071700151267200}
+  - component: {fileID: 2265540590086272095}
+  - component: {fileID: 7177453073865471614}
   m_Layer: 0
   m_Name: HealthPickup
   m_TagString: Untagged
@@ -31,6 +33,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2265540590086272095
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4246805281992408079}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.75
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7177453073865471614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4246805281992408079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9b851e105b2e054bb9227cfa535e086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healAmount: 30
+  healEffect: {fileID: 1881552412633134, guid: 1d88e2fa5a6c1eb42ba5ad2da65a84ed, type: 3}
+  healSound: {fileID: 8300000, guid: 603c5a55a89c9f842b0897633752d78d, type: 3}
 --- !u!1 &7025678303656670424
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,8 +70,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7025678303656670431}
-  - component: {fileID: 5402991854627011412}
-  - component: {fileID: 2487030457717607356}
   - component: {fileID: 2542008401559445509}
   m_Layer: 0
   m_Name: HealthPickupItem
@@ -65,34 +93,6 @@ Transform:
   m_Father: {fileID: 5851071700151267200}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &5402991854627011412
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7025678303656670424}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.75
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2487030457717607356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7025678303656670424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9b851e105b2e054bb9227cfa535e086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healAmount: 30
-  healEffect: {fileID: 1881552412633134, guid: 1d88e2fa5a6c1eb42ba5ad2da65a84ed, type: 3}
-  healSound: {fileID: 8300000, guid: 6a9bf137cd4460448abc84f8b19ce54f, type: 3}
 --- !u!95 &2542008401559445509
 Animator:
   serializedVersion: 3

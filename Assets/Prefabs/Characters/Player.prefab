@@ -1725,6 +1725,14 @@ PrefabInstance:
       propertyPath: modelRenderer
       value: 
       objectReference: {fileID: 3240964877125518683}
+    - target: {fileID: 6964551649127469363, guid: ffaebc27547d4e049b26bff9b9b477b3, type: 3}
+      propertyPath: m_Speed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6964551649127469363, guid: ffaebc27547d4e049b26bff9b9b477b3, type: 3}
+      propertyPath: m_Acceleration
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 8028271400243145144, guid: ffaebc27547d4e049b26bff9b9b477b3, type: 3}
       propertyPath: m_RootOrder
       value: 1

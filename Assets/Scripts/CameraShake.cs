@@ -42,9 +42,9 @@ public class CameraShake : MonoBehaviour
         }
     }
 
-    public void TriggerShake(float power)
+    public void TriggerShake(float power, float duration = 0.2f)
 	{
         shakeAmplitude = Mathf.Max(shakeAmplitude, power);
-        shakeElapsedTime = shakeDuration;
+        shakeElapsedTime = duration;
     }
 }

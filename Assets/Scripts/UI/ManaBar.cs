@@ -11,9 +11,10 @@ namespace RPG.UI
 	{
 		[SerializeField]
 		private RectTransform value;
-
 		[SerializeField]
 		private CanvasGroup canvasGroup;
+		[SerializeField]
+		private AudioClip warningSound;
 
 		private Mana mana;
 		private PlayerAttacker attacker;
@@ -45,15 +46,7 @@ namespace RPG.UI
 		private void ShowWarning()
 		{
 			canvasGroup.alpha = 0.5f;
-			//StartCoroutine(Warning());
-		}
-
-		private IEnumerator Warning()
-		{
-
-			canvasGroup.alpha = 0.5f;
-			yield return new WaitForSeconds(0.1f);
-			canvasGroup.alpha = 0f;
+			AudioSource.PlayClipAtPoint(warningSound, Camera.main.transform.position);
 		}
 	}
 }
