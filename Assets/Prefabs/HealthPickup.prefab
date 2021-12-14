@@ -58,9 +58,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b851e105b2e054bb9227cfa535e086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healAmount: 30
+  healAmount: 50
+  timeToDestroy: 10
   healEffect: {fileID: 1881552412633134, guid: 1d88e2fa5a6c1eb42ba5ad2da65a84ed, type: 3}
-  healSound: {fileID: 8300000, guid: 603c5a55a89c9f842b0897633752d78d, type: 3}
+  healSound: {fileID: 8300000, guid: 6a9bf137cd4460448abc84f8b19ce54f, type: 3}
 --- !u!1 &7025678303656670424
 GameObject:
   m_ObjectHideFlags: 0

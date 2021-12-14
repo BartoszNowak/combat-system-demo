@@ -35,7 +35,7 @@ namespace RPG.Combat
 
         bool casting = false;
 
-        private void Start()
+        private void Awake()
         {
             mover = GetComponent<Mover>();
             animator = GetComponent<Animator>();
@@ -135,7 +135,7 @@ namespace RPG.Combat
 			ShowImpactEffect(target.transform);
 			PlayImpactSound();
 			target.GetComponent<Mover>().Knockback(transform.forward, currentWeapon.GetKnockback());
-			targetsHealth.DealDamage(currentWeapon.GetDamage(), gameObject);
+			targetsHealth.DealDamage(currentWeapon.GetDamage(), gameObject, true);
 		}
 
         //Animation trigger
@@ -151,7 +151,7 @@ namespace RPG.Combat
                 ShowImpactEffect(target);
                 PlayImpactSound();
                 target.GetComponent<Mover>().Knockback(transform.forward, currentWeapon.GetKnockback());
-                targetsHealth.DealDamage(currentWeapon.GetDamage(), gameObject);
+                targetsHealth.DealDamage(currentWeapon.GetDamage(), gameObject, true);
 			}
             if(currentWeapon.CanCancelAnimation())
 			{

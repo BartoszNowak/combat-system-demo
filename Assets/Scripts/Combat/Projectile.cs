@@ -83,19 +83,20 @@ namespace RPG.Combat
 
             ShowImpactEffect(other.transform);
             AudioSource.PlayClipAtPoint(impactSound, transform.position);
-            if (!Mathf.Approximately(areaDamageRange, 0))
-            {
-                AreaDamage(other);
-            }
+            
             Camera.main.GetComponent<CameraShake>().TriggerShake(feedbackShakePower);
 
             var health = other.GetComponent<Health>();
 
             if(health != null && !health.IsDead())
 			{
-                health.DealDamage(damage, attacker);
+                health.DealDamage(damage, attacker, false);
             }
-            
+            if (!Mathf.Approximately(areaDamageRange, 0))
+            {
+                AreaDamage(other);
+            }
+
             Destroy(gameObject);
         }
 
@@ -116,7 +117,7 @@ namespace RPG.Combat
                 var health = h.GetComponent<Health>();
                 if (health == null) continue;
 
-                health.DealDamage((int)(damage * areaDamageMultiplier), attacker);
+                health.DealDamage((int)(damage * areaDamageMultiplier), attacker, false);
             }
 		}
     }

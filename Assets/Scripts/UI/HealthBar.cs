@@ -49,7 +49,7 @@ namespace RPG.UI
 
 		private void DestroyHealthBar()
 		{
-			Destroy(gameObject);
+			//Destroy(gameObject);
 		}
 	}
 }

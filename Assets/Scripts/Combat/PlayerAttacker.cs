@@ -12,6 +12,9 @@ namespace RPG.Combat
 
         public event Action OnManaWarning;
 
+        public event Action OnFailSwordOnly;
+        public event Action OnFailMagicOnly;
+
         private void Update()
 		{
             if (health.IsDead()) return;
@@ -34,6 +37,16 @@ namespace RPG.Combat
         void HitEnd()
         {
             currentWeapon.EnableHitBox(false);
+        }
+
+        public void FailSwordOnly()
+		{
+            OnFailSwordOnly?.Invoke();
+		}
+
+        public void FailMagicOnly()
+        {
+            OnFailMagicOnly?.Invoke();
         }
 
         public override void CastSpell(Vector3 direction)

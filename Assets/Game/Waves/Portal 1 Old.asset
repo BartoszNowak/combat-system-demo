@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4411dcb5679f7374f858f6fcff2a0322, type: 3}
+  m_Name: Portal 1 Old
+  m_EditorClassIdentifier: 
+  waves:
+  - enemyPrefab: {fileID: 4503891599873546947, guid: c8a83bcc1f8074346856b5f5dca7df38, type: 3}
+    amount: 1
+  - enemyPrefab: {fileID: 4503891599873546947, guid: c8a83bcc1f8074346856b5f5dca7df38, type: 3}
+    amount: 1
+  - enemyPrefab: {fileID: 8439438569925353353, guid: 6e1a3fc175ce5654dad65ccf83b48eea, type: 3}
+    amount: 1
+  - enemyPrefab: {fileID: 5368624685987607665, guid: de2ccf9c9984ee1449761bb52dfc0937, type: 3}
+    amount: 1

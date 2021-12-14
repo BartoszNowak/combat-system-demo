@@ -9,6 +9,8 @@ public class FinalBattle : MonoBehaviour
     private GameObject battle;
     [SerializeField]
     private GameObject portal;
+    [SerializeField]
+    private UIAnimationManager animationManager;
 
     private int spawnersAmount;
 
@@ -64,6 +66,16 @@ public class FinalBattle : MonoBehaviour
 
     private void FinishBattle()
 	{
-        battle.GetComponentInChildren<MagicTrapSpawner>().Disable();
+        StartCoroutine(FinalSequence());
 	}
+
+    private IEnumerator FinalSequence()
+	{
+        battle.GetComponentInChildren<MagicTrapSpawner>().Disable();
+        yield return new WaitForSeconds(1);
+        animationManager.FadeScreen();
+        yield return new WaitForSeconds(3);
+
+        animationManager.OpenEndMenu();
+    }
 }

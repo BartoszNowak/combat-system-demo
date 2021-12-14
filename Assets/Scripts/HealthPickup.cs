@@ -8,13 +8,15 @@ public class HealthPickup : MonoBehaviour
     [SerializeField]
     private int healAmount = 30;
     [SerializeField]
+    private float timeToDestroy = 10f;
+    [SerializeField]
     private GameObject healEffect = null;
     [SerializeField]
     private AudioClip healSound = null;
 
 	private void Start()
 	{
-        Destroy(gameObject, 10f);
+        Destroy(gameObject, timeToDestroy);
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -26,7 +28,7 @@ public class HealthPickup : MonoBehaviour
         
         health.Heal(healAmount);
         Instantiate(healEffect, other.transform);
-        AudioSource.PlayClipAtPoint(healSound, Camera.main.transform.position);
+        other.GetComponent<AudioSource>().PlayOneShot(healSound);
         Destroy(gameObject);
 	}
 }

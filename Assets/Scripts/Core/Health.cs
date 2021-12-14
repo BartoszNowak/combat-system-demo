@@ -1,3 +1,4 @@
+using RPG.Combat;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,8 +29,20 @@ namespace RPG.Core
             currentHealth = maxHealth;
         }
 
-		public void DealDamage(int damage, GameObject attacker)
+		public void DealDamage(int damage, GameObject attacker, bool melee)
         {
+            if(attacker.tag == "Player")
+			{
+                var playerAttacker = attacker.GetComponent<PlayerAttacker>();
+                if(melee)
+				{
+                    playerAttacker.FailSwordOnly();
+				}
+                else
+				{
+                    playerAttacker.FailMagicOnly();
+                }
+			}
             currentHealth = Mathf.Max(currentHealth - damage, 0);
             OnTakeDamage?.Invoke(damage);
             if (currentHealth == 0)
@@ -72,6 +85,18 @@ namespace RPG.Core
             actionManager.CancelCurrentAction();
             isDead = true;
             OnDeath?.Invoke();
+        }
+
+        public void GainIFrames(Animator animator)
+        {
+            StartCoroutine(TakingDamage(animator));
+        }
+
+        private IEnumerator TakingDamage(Animator animator)
+        {
+            yield return new WaitForSeconds(1);
+            animator.ResetTrigger("hit");
+            animator.SetBool("takingDamage", false);
         }
     }
 }

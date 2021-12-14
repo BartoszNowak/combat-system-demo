@@ -8,13 +8,15 @@ public class ManaPickup : MonoBehaviour
     [SerializeField]
     private int gainAmount = 50;
     [SerializeField]
+    private float timeToDestroy = 10f;
+    [SerializeField]
     private GameObject manaEffect = null;
     [SerializeField]
     private AudioClip manaSound = null;
 
 	private void Start()
 	{
-        Destroy(gameObject, 10f);
+        Destroy(gameObject, timeToDestroy);
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -26,7 +28,7 @@ public class ManaPickup : MonoBehaviour
         
         mana.IncreaseMana(gainAmount);
         Instantiate(manaEffect, other.transform);
-        AudioSource.PlayClipAtPoint(manaSound, Camera.main.transform.position);
+        other.GetComponent<AudioSource>().PlayOneShot(manaSound);
         Destroy(gameObject);
 	}
 }

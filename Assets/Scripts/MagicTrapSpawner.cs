@@ -31,6 +31,7 @@ public class MagicTrapSpawner : MonoBehaviour
     public void Disable()
 	{
         attacking = false;
+        StopAllCoroutines();
 	}
 
     private IEnumerator Loop()

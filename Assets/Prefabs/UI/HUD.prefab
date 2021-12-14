@@ -180,6 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: {fileID: 7922316276715911152}
   canvasGroup: {fileID: 6774548162196698011}
+  warningSound: {fileID: 8300000, guid: 59f704a57a604d848808ca42faef714c, type: 3}
 --- !u!1 &3814253800974442933
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class ShardImpact : MonoBehaviour
 
 		Camera.main.GetComponent<CameraShake>().TriggerShake(shakeScreenPower, 0.5f);
 		var targetsHealth = other.GetComponent<Health>();
-		targetsHealth.DealDamage(damage, gameObject);
+		targetsHealth.DealDamage(damage, gameObject, false);
 
 		Destroy(gameObject);
 	}

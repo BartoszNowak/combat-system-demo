@@ -14,6 +14,7 @@ namespace RPG.Core
         private int currentMana;
 
         private float manaRegenerationFraction = 0f;
+        private float manaRegenerationAcceleration = 1f;
 
         void Start()
         {
@@ -23,7 +24,9 @@ namespace RPG.Core
         void Update()
         {
             if (currentMana == maxMana) return;
-            manaRegenerationFraction += Time.deltaTime;
+
+            manaRegenerationAcceleration += Time.deltaTime;
+            manaRegenerationFraction += Time.deltaTime * manaRegenerationAcceleration;
             if(manaRegenerationFraction > 1)
 			{
                 currentMana += 1;
@@ -39,6 +42,7 @@ namespace RPG.Core
         public void DecreaseMana(int amount)
 		{
             currentMana = Mathf.Max(currentMana - amount, 0);
+            manaRegenerationAcceleration = 1f;
 		}
 
         public bool CanCast(int mana)
