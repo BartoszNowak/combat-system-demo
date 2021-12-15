@@ -74,6 +74,8 @@ MonoBehaviour:
   textExpandTime: 0.2
   achivedSound: {fileID: 8300000, guid: 9e849d6b50d802047b0289267cc68f73, type: 3}
   failedSound: {fileID: 8300000, guid: 87f7d7eef0bb5134ea1078eb6ee68f69, type: 3}
+  backgroundMusic: {fileID: 0}
+  menuMusic: {fileID: 8300000, guid: d9e280ca0b9d3ad4f83da6d4defd2c91, type: 3}
 --- !u!82 &8862196221008464591
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1029,6 +1031,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stats
       objectReference: {fileID: 0}
+    - target: {fileID: 6404307312704778750, guid: 7299d95dc05a9f54fb5e1697d2d4e980, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8048294551622402874, guid: 7299d95dc05a9f54fb5e1697d2d4e980, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1122,14 +1128,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu
       objectReference: {fileID: 0}
-    - target: {fileID: 187831294082746128, guid: 50c392fdb0e937c489a4a9007199eb9d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 201987369395129003, guid: 50c392fdb0e937c489a4a9007199eb9d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3063087517584696919}
+    - target: {fileID: 697286818893579724, guid: 50c392fdb0e937c489a4a9007199eb9d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3063087517584696919}
+    - target: {fileID: 697286818893579724, guid: 50c392fdb0e937c489a4a9007199eb9d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayAgain
+      objectReference: {fileID: 0}
     - target: {fileID: 2498495768041945137, guid: 50c392fdb0e937c489a4a9007199eb9d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

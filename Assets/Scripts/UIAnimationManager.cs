@@ -94,7 +94,7 @@ public class UIAnimationManager : MonoBehaviour
     private IEnumerator LoadNewGame()
 	{
         Time.timeScale = 1f;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(0);
     }
 

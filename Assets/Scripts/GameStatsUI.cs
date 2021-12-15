@@ -35,6 +35,11 @@ public class GameStatsUI : MonoBehaviour
     [SerializeField]
     private AudioClip failedSound;
 
+    [SerializeField]
+    private AudioSource backgroundMusic;
+    [SerializeField]
+    private AudioClip menuMusic;
+
     private GameStats gameStats;
     private AudioSource audioSource;
 
@@ -53,6 +58,8 @@ public class GameStatsUI : MonoBehaviour
 
     public void CinematicOpen(Action callback)
     {
+        backgroundMusic.clip = menuMusic;
+        backgroundMusic.Play();
 		time.transform.localScale = Vector3.zero;
 		hitsTaken.transform.localScale = Vector3.zero;
 		allContent.transform.localScale = Vector3.zero;

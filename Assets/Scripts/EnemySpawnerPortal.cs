@@ -46,7 +46,8 @@ public class EnemySpawnerPortal : MonoBehaviour
             enemiesInWave = wave.amount;
 
             Instantiate(spawnEffect, spawnPoint.position, Quaternion.identity);
-            AudioSource.PlayClipAtPoint(spawnSound, Camera.main.transform.position);
+            var aud = GameObject.Find("Battle").GetComponent<AudioSource>();
+            aud.Play();
 
             yield return new WaitForSeconds(2);
 
