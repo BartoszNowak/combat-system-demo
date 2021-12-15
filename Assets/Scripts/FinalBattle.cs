@@ -71,11 +71,11 @@ public class FinalBattle : MonoBehaviour
 
     private IEnumerator FinalSequence()
 	{
+        var statsUi = animationManager.GetComponent<GameStatsUI>();
         battle.GetComponentInChildren<MagicTrapSpawner>().Disable();
         yield return new WaitForSeconds(1);
         animationManager.FadeScreen();
         yield return new WaitForSeconds(3);
-
-        animationManager.OpenEndMenu();
+        statsUi.CinematicOpen(animationManager.OpenEndMenu);
     }
 }

@@ -66,7 +66,7 @@ public class UIAnimationManager : MonoBehaviour
         am.StartAction(new PausedState());
 
         endMenu.localPosition = new Vector2(0, -Screen.height);
-        endMenu.LeanMoveLocalY(0, 1f).setEaseInExpo().setDelay(0.1f).setOnComplete(Pause);
+        endMenu.LeanMoveLocalY(-300, 1f).setEaseInExpo().setDelay(0.1f).setOnComplete(Pause);
         endMenuOpen = true;
     }
 

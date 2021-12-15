@@ -8,24 +8,53 @@ using RPG.Combat;
 
 public class GameStats : MonoBehaviour
 {
-	private Health health;
-	private PlayerAttacker playerAttacker;
+	public static GameStats instance;
 
-	private float totalTime;
-	private int hitsTaken;
-	private bool allContent;
-	private bool swordOnly;
-	private bool magicOnly;
+	private Health health;
+
+	public float totalTime;
+	public int hitsTaken;
+	public bool swordOnly = true;
+	public bool magicOnly = true;
+
+	public int totalEnemies;
+	public int killedEnemies;
+
+	public string TotalMinutes
+	{
+		get
+		{
+			var seconds = (int)totalTime;
+			var minutes = seconds % 60;
+			return $"{minutes}:{seconds}";
+		}
+	}
+
+	public bool AllContent => totalEnemies - killedEnemies == 0;
+
+	private void Awake()
+	{
+		if (instance == null)
+		{
+			instance = this;
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+		DontDestroyOnLoad(gameObject);
+	}
 
 	private void Start()
 	{
-		DontDestroyOnLoad(gameObject);
 		var player = GameObject.FindGameObjectWithTag("Player");
 		health = player.GetComponent<Health>();
 		health.OnTakeDamage += IncreaseHits;
-		playerAttacker = player.GetComponent<PlayerAttacker>();
-		playerAttacker.OnFailSwordOnly += DisableSwordOnly;
-		playerAttacker.OnFailMagicOnly += DisableMagicOnly;
+	}
+
+	private void Update()
+	{
+		totalTime += Time.deltaTime;
 	}
 
 	private void OnDisable()
@@ -38,13 +67,13 @@ public class GameStats : MonoBehaviour
 		hitsTaken++;
 	}
 
-	private void DisableSwordOnly()
-	{
-		swordOnly = false;
-	}
+	//private void DisableSwordOnly()
+	//{
+	//	swordOnly = false;
+	//}
 
-	private void DisableMagicOnly()
-	{
-		magicOnly = false;
-	}
+	//private void DisableMagicOnly()
+	//{
+	//	magicOnly = false;
+	//}
 }

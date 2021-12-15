@@ -31,18 +31,7 @@ namespace RPG.Core
 
 		public void DealDamage(int damage, GameObject attacker, bool melee)
         {
-            if(attacker.tag == "Player")
-			{
-                var playerAttacker = attacker.GetComponent<PlayerAttacker>();
-                if(melee)
-				{
-                    playerAttacker.FailSwordOnly();
-				}
-                else
-				{
-                    playerAttacker.FailMagicOnly();
-                }
-			}
+            SetStatsManagerValues(attacker, melee);
             currentHealth = Mathf.Max(currentHealth - damage, 0);
             OnTakeDamage?.Invoke(damage);
             if (currentHealth == 0)
@@ -97,6 +86,22 @@ namespace RPG.Core
             yield return new WaitForSeconds(1);
             animator.ResetTrigger("hit");
             animator.SetBool("takingDamage", false);
+        }
+
+        private void SetStatsManagerValues(GameObject attacker, bool melee)
+		{
+            if (attacker.tag == "Player")
+            {
+                var stats = GameObject.FindGameObjectWithTag("StatsManager").GetComponent<GameStats>();
+                if (melee)
+                {
+                    stats.magicOnly = false;
+                }
+                else
+                {
+                    stats.swordOnly = false;
+                }
+            }
         }
     }
 }

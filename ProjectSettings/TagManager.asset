@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - WaveSpawner
+  - StatsManager
   layers:
   - Default
   - TransparentFX
