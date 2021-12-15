@@ -25,8 +25,10 @@ public class GameStats : MonoBehaviour
 		get
 		{
 			var seconds = (int)totalTime;
-			var minutes = seconds % 60;
-			return $"{minutes}:{seconds}";
+			var minutes = seconds / 60;
+			seconds -= minutes * 60;
+			var s = seconds < 10 ? "0" : "";
+			return $"{minutes}:{s}{seconds}";
 		}
 	}
 
@@ -40,12 +42,18 @@ public class GameStats : MonoBehaviour
 		}
 		else
 		{
+			instance.ReloadReferences();
 			Destroy(gameObject);
 		}
 		DontDestroyOnLoad(gameObject);
 	}
 
 	private void Start()
+	{
+		ReloadReferences();
+	}
+
+	private void ReloadReferences()
 	{
 		var player = GameObject.FindGameObjectWithTag("Player");
 		health = player.GetComponent<Health>();
@@ -57,6 +65,16 @@ public class GameStats : MonoBehaviour
 		totalTime += Time.deltaTime;
 	}
 
+	public void ResetStats()
+	{
+		totalTime = 0f;
+		hitsTaken = 0;
+		swordOnly = true;
+		magicOnly = true;
+		totalEnemies = 0;
+		killedEnemies = 0;
+}
+
 	private void OnDisable()
 	{
 		health.OnTakeDamage -= IncreaseHits;
@@ -66,14 +84,4 @@ public class GameStats : MonoBehaviour
 	{
 		hitsTaken++;
 	}
-
-	//private void DisableSwordOnly()
-	//{
-	//	swordOnly = false;
-	//}
-
-	//private void DisableMagicOnly()
-	//{
-	//	magicOnly = false;
-	//}
 }

@@ -30,8 +30,13 @@ public class GameStatsUI : MonoBehaviour
     [SerializeField]
     private float textExpandTime;
 
+    [SerializeField]
+    private AudioClip achivedSound;
+    [SerializeField]
+    private AudioClip failedSound;
+
     private GameStats gameStats;
-    private bool open;
+    private AudioSource audioSource;
 
     public void SetValues()
     {
@@ -43,20 +48,7 @@ public class GameStatsUI : MonoBehaviour
     void Start()
     {
         stats.localPosition = new Vector2(0, Screen.height);
-    }
-
-    public void OpenMenu()
-    {
-        SetValues();
-        stats.localPosition = new Vector2(0, Screen.height);
-        stats.LeanMoveLocalY(0, transitionTime).setEaseInExpo().setDelay(0.1f);
-        open = true;
-    }
-
-    public void CloseStats()
-    {
-        stats.LeanMoveLocalY(Screen.height, transitionTime).setEaseInExpo();
-        open = false;
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void CinematicOpen(Action callback)
@@ -135,9 +127,6 @@ public class GameStatsUI : MonoBehaviour
         }
 
         seq.append(spacingBetweenTweens);
-        //seq.append(() => Debug.Log("Before" + stats.transform.localScale));
-        //seq.append(LeanTween.scale(stats.gameObject, Vector3.one * 0.8f, textExpandTime));
-        //seq.append(() => Debug.Log("After" + stats.transform.localScale));
         seq.append(LeanTween.moveLocalY(stats.gameObject, 200, textExpandTime));
 
         seq.append(callback);
@@ -146,32 +135,39 @@ public class GameStatsUI : MonoBehaviour
     private void NoHitsTaken()
 	{
         hitsTaken.color = rewardColor;
+        audioSource.PlayOneShot(achivedSound);
 	}
 
     private void AllContentAchived()
 	{
         allContent.color = rewardColor;
+        audioSource.PlayOneShot(achivedSound);
     }
     private void AllContentFailed()
     {
         allContent.color = failColor;
+        audioSource.PlayOneShot(failedSound);
     }
 
     private void SwordOnlyAchived()
     {
         swordOnly.color = rewardColor;
+        audioSource.PlayOneShot(achivedSound);
     }
     private void SwordOnlyFailed()
     {
         swordOnly.color = failColor;
+        audioSource.PlayOneShot(failedSound);
     }
 
     private void MagicOnlyAchived()
     {
         magicOnly.color = rewardColor;
+        audioSource.PlayOneShot(achivedSound);
     }
     private void MagicOnlyFailed()
     {
         magicOnly.color = failColor;
+        audioSource.PlayOneShot(failedSound);
     }
 }
